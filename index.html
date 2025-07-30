@@ -3962,6 +3962,127 @@ select:focus {
     animation: fadeInRight 0.6s ease-out forwards;
 }
 
+/* About Section - Animated Video (GIF-like) Styling */
+.about-media {
+    position: relative;
+}
+
+.about-media-wrapper {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+    background: var(--primary-gradient);
+    aspect-ratio: 16/10; /* Adjust based on your video's aspect ratio */
+}
+
+.about-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+    border-radius: 20px;
+}
+
+.about-media-wrapper:hover .about-video {
+    transform: scale(1.02);
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        135deg,
+        rgba(167, 139, 250, 0.05) 0%,
+        rgba(249, 168, 212, 0.05) 100%
+    );
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.about-media-wrapper:hover .video-overlay {
+    opacity: 1;
+}
+
+/* Loading state with shimmer effect */
+.about-video:not([data-loaded]) {
+    background: linear-gradient(
+        90deg,
+        var(--pastel-lavender) 0%,
+        var(--bs-light) 50%,
+        var(--pastel-lavender) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .about-media-wrapper {
+        aspect-ratio: 4/3; /* More square on mobile */
+        margin-bottom: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-media-wrapper {
+        border-radius: 15px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    }
+}
+
+/* Performance optimization for video */
+.about-video {
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+/* Optional: Add a subtle border glow effect */
+.about-media-wrapper::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: var(--primary-gradient);
+    border-radius: 22px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.about-media-wrapper:hover::before {
+    opacity: 0.3;
+}
+
+/* Ensure smooth playback on all devices */
+@media (prefers-reduced-motion: reduce) {
+    .about-video {
+        animation: none;
+    }
+    
+    .about-media-wrapper:hover .about-video {
+        transform: none;
+    }
+}
+
+      
 /* Stagger animation delays */
 .animate-delay-100 { animation-delay: 0.1s; }
 .animate-delay-200 { animation-delay: 0.2s; }
@@ -4395,28 +4516,69 @@ img {
         </section>
 
         <!-- About Section -->
-        <section class="section about-section" id="about">
-            <div class="container">
-                <h2 class="section-title fade-in">About Me</h2>
-                <p class="section-subtitle fade-in">Bridging the gap between technology and creativity</p>
+<section class="section about-section" id="about">
+    <div class="container">
+        <h2 class="section-title" data-aos="fade-up">About Me</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Bridging the gap between technology and creativity</p>
+        
+        <div class="about-content">
+            <div class="about-media" data-aos="fade-right" data-aos-delay="200">
+                <div class="about-media-wrapper">
+                    <!-- Animated Video (GIF-like) -->
+                    <video 
+                        class="about-video" 
+                        autoplay 
+                        muted 
+                        loop 
+                        playsinline
+                        preload="metadata"
+                        poster="assets/image/hero/video-poster.jpg"
+                    >
+                        <source src="assets/image/hero/gamer-streaming-online-15548981-12612912.mp4" type="video/mp4">
+                        <!-- Fallback for older browsers -->
+                        Your browser does not support the video tag.
+                    </video>
+                    <!-- Subtle overlay for better text readability if needed -->
+                    <div class="video-overlay"></div>
+                </div>
+            </div>
+            
+            <div class="about-text" data-aos="fade-left" data-aos-delay="300">
+                <h3>AI Creative Designer & Digital Innovator</h3>
+                <p>
+                    With a passion for pushing the boundaries of technology and creativity, I specialize in developing AI-powered solutions that transform how we interact with digital content. My expertise spans voice AI, multilingual content creation, and innovative user experiences.
+                </p>
+                <p>
+                    I believe in the power of technology to enhance human creativity rather than replace it. Through my work, I aim to create solutions that are not only technically advanced but also deeply meaningful and accessible to diverse audiences.
+                </p>
                 
-                <div class="about-content fade-in">
-                    <div class="about-image">
-                        <div class="about-image-wrapper">
-                            <img src="assets/image/hero/gamer-streaming-online-15548981-12612912.mp4" alt="Thanatsitt Profile" loading="lazy">
-                        </div>
+                <div class="skill-highlights">
+                    <div class="skill-item">
+                        <i class="fas fa-microphone"></i>
+                        <span>Voice AI & Speech Technology</span>
                     </div>
-                                        <div class="about-text">
-                        <h3>Innovating at the Intersection of AI and Design</h3>
-                        <p>
-                            As an AI Creative Designer with a passion for pushing boundaries, I specialize in creating 
-                            innovative digital experiences that seamlessly blend artificial intelligence with human-centered design.
-                        </p>
-                        <p>
-                            My expertise spans across AI training, script writing, multilingual translation, voice acting, 
-                            and conducting natural flow talk sessions. I work with leading AI companies to enhance their 
-                            models through authentic, culturally-aware content creation.
-                        </p>
+                    <div class="skill-item">
+                        <i class="fas fa-language"></i>
+                        <span>Multilingual Content Creation</span>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-robot"></i>
+                        <span>AI Training & Development</span>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-palette"></i>
+                        <span>Creative Design Solutions</span>
+                    </div>
+                </div>
+                
+                <div class="cta-buttons">
+                    <a href="#services" class="btn-primary">Explore Services</a>
+                    <a href="#contact" class="btn-secondary">Let's Connect</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
                         <div class="stats-grid">
                             <div class="stat-item">
                                 <div class="stat-number">5+</div>
@@ -7987,6 +8149,75 @@ rippleStyle.textContent = `
 `;
 document.head.appendChild(rippleStyle);
 
+// Optimized animated video handling
+document.addEventListener('DOMContentLoaded', function() {
+    const video = document.querySelector('.about-video');
+    
+    if (video) {
+        // Ensure video is treated like a GIF (always looping, no controls)
+        video.addEventListener('loadeddata', function() {
+            this.setAttribute('data-loaded', 'true');
+            
+            // Ensure it starts playing (some browsers might pause)
+            const playPromise = this.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.catch(error => {
+                    console.log('Auto-play was prevented:', error);
+                    // Video will still loop when user interacts with page
+                });
+            }
+        });
+        
+        // Handle video errors gracefully
+        video.addEventListener('error', function(e) {
+            console.warn('Video failed to load:', e);
+            // You could replace with a static image fallback here
+            this.style.display = 'none';
+        });
+        
+        // Ensure video continues looping (redundant but good for compatibility)
+        video.addEventListener('ended', function() {
+            this.currentTime = 0;
+            this.play();
+        });
+        
+        // Intersection Observer for performance (pause when not visible)
+        const videoObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    if (video.paused) {
+                        video.play().catch(e => console.log('Play failed:', e));
+                    }
+                } else {
+                    // Optional: pause when not in view to save resources
+                    // video.pause();
+                }
+            });
+        }, {
+            threshold: 0.3,
+            rootMargin: '10px'
+        });
+        
+        videoObserver.observe(video);
+        
+        // Preload optimization
+        if (video.readyState >= 3) {
+            video.setAttribute('data-loaded', 'true');
+        }
+    }
+});
+
+// Optional: Reduce motion for accessibility
+if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const video = document.querySelector('.about-video');
+    if (video) {
+        video.pause();
+        video.style.opacity = '0.7';
+    }
+}
+
+  
 // ====================================
 // ADDITIONAL UTILITY FUNCTIONS
 // ====================================
