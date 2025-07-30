@@ -8809,48 +8809,36 @@ if (typeof module !== 'undefined' && module.exports) {
     };
 }
     </script>
-<!-- Error Prevention Script -->
-<script>
-// Prevent common errors
-(function() {
-    'use strict';
-    
-    // Prevent undefined errors
-    window.gsap = window.gsap || { 
-        from: function() { console.log('GSAP fallback used'); },
-        to: function() { console.log('GSAP fallback used'); }
-    };
-    
-    // Console safety
-    if (!window.console) {
-        window.console = {
-            log: function() {},
-            error: function() {},
-            warn: function() {}
-        };
-    }
-    
-    // Intersection Observer fallback
-    if (!window.IntersectionObserver) {
-        window.IntersectionObserver = function(callback) {
-            return {
-                observe: function(el) {
-                    setTimeout(function() {
-                        callback([{target: el, isIntersecting: true}]);
-                    }, 100);
-                },
-                unobserve: function() {},
-                disconnect: function() {}
-            };
-        };
-    }
-})();
-</script>
+<script defer>
+document.addEventListener('DOMContentLoaded', function() {
+    if ('performance' in window) {
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const perfData = performance.timing;
+                const loadTime = perfData.loadEventEnd - perfData.navigationStart;
+                const domReady = perfData.domContentLoadedEventEnd - perfData.navigationStart;
+                
+                console.log(`
+⚡ PERFORMANCE METRICS:
+- Total Load Time: ${loadTime}ms  
+- DOM Ready: ${domReady}ms
+- Page Interactive: ${perfData.domInteractive - perfData.navigationStart}ms
 
-<!-- Your main portfolio script goes here -->
-<script>
-    // THE SAFE PORTFOLIO SCRIPT FROM ABOVE
-</script>
+${loadTime < 3000 ? '✅ Great performance!' : '⚠️ Consider optimizing load time'}
+                `);
+                
+                // Track to analytics if needed
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'page_performance', {
+                        'load_time': loadTime,
+                        'dom_ready': domReady
+                    });
+                }
+            }, 1000);
+        });
+    }
+});
+                      </script>
 
 </body>
 </html>
