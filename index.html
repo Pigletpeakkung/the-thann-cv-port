@@ -6402,7 +6402,54 @@ class PortfolioApp {
         
         document.body.appendChild(fallback);
     }
+
+        initCompanyShowcase() {
+    const logoTrack = document.querySelector('.logo-track');
+    if (!logoTrack) {
+        console.warn('⚠️ Company Showcase: .logo-track not found. Skipping initialization.');
+        return; // Exit early to prevent errors
+    }
     
+    // Clone logos for infinite scroll (with check)
+    const logoItems = logoTrack.querySelectorAll('.logo-item');
+    if (logoItems.length === 0) {
+        console.warn('⚠️ Company Showcase: No .logo-item elements found.');
+        return;
+    }
+    logoItems.forEach(item => {
+        const clone = item.cloneNode(true);
+        logoTrack.appendChild(clone);
+    });
+    
+    // Pause animation on hover
+    const logoWrapper = document.querySelector('.logo-scroll-wrapper');
+    if (logoWrapper) {
+        logoWrapper.addEventListener('mouseenter', () => {
+            logoTrack.style.animationPlayState = 'paused';
+        });
+        
+        logoWrapper.addEventListener('mouseleave', () => {
+            logoTrack.style.animationPlayState = 'running';
+        });
+    } else {
+        console.warn('⚠️ Company Showcase: .logo-scroll-wrapper not found. Hover pause disabled.');
+    }
+    
+    // Enhanced company details (with error handling)
+    document.querySelectorAll('.logo-item').forEach(item => {
+        item.addEventListener('click', () => {
+            try {
+                const companyName = item.querySelector('.logo-name')?.textContent || 
+                                    item.getAttribute('data-company') || 'Company';
+                this.showCompanyModal(companyName);
+            } catch (error) {
+                console.error('❌ Error opening company modal:', error);
+                this.showNotification('Failed to load company details. Please try again.', 'error');
+            }
+        });
+    });
+}
+
     // Cleanup method
     destroy() {
         // Run all cleanup tasks
