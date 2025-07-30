@@ -9070,36 +9070,7 @@ if (typeof module !== 'undefined' && module.exports) {
     };
 }
   
-        
-<script defer>
-document.addEventListener('DOMContentLoaded', function() {
-    if ('performance' in window) {
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                const perfData = performance.timing;
-                const loadTime = perfData.loadEventEnd - perfData.navigationStart;
-                const domReady = perfData.domContentLoadedEventEnd - perfData.navigationStart;
-                
-                console.log(`
-⚡ PERFORMANCE METRICS:
-- Total Load Time: ${loadTime}ms  
-- DOM Ready: ${domReady}ms
-- Page Interactive: ${perfData.domInteractive - perfData.navigationStart}ms
-
-${loadTime < 3000 ? '✅ Great performance!' : '⚠️ Consider optimizing load time'}
-                `);
-                
-                // Track to analytics if needed
-                if (typeof gtag !== 'undefined') {
-                    gtag('event', 'page_performance', {
-                        'load_time': loadTime,
-                        'dom_ready': domReady
-                    });
-                }
-            }, 1000);
-        });
-    }
-});
+    
                       </script>
 
 </body>
