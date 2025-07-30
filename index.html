@@ -2920,68 +2920,6 @@ html {
 }
 
 
-/* PWA Specific Styles */
-.pwa-install-btn {
-    animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
-}
-
-.pwa-update-banner .update-content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.update-text {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-
-.update-btn {
-    background: #A78BFA;
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 4px;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-.dismiss-btn {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 1.5rem;
-    cursor: pointer;
-    margin-left: 12px;
-}
-
-/* Standalone mode adjustments */
-@media (display-mode: standalone) {
-    body {
-        padding-top: 20px; /* Account for no browser chrome */
-    }
-    
-    .navbar {
-        padding-top: 20px; /* Extra padding for status bar on iOS */
-    }
-}
-
-/* iOS specific PWA styles */
-@supports (-webkit-touch-callout: none) {
-    .pwa-install-btn {
-        bottom: 90px; /* Account for iOS home indicator */
-    }
-}
-
       
 /* Responsive Design */
 @media (max-width: 1200px) {
