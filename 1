@@ -1,5 +1,37 @@
 # 🚀 Complete PWA Setup for Your Portfolio
 
+<!-- In your main <script> tag, add this at the very beginning -->
+<script>
+// ====================================
+// SERVICE WORKER REGISTRATION (FIXED)
+// ====================================
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js')
+        .then(registration => {
+            console.log('✅ SW registered successfully');
+        })
+        .catch(error => {
+            console.log('⚠️ SW registration failed, continuing without offline support');
+            // Don't stop the app, just continue without PWA features
+        });
+}
+
+// ====================================
+// REST OF YOUR EXISTING CODE FOLLOWS
+// ====================================
+document.addEventListener('DOMContentLoaded', function() {
+    // Your existing PortfolioApp code here...
+    
+    try {
+        // Initialize your app
+        window.portfolioApp = new PortfolioApp();
+    } catch (error) {
+        console.error('App init failed:', error);
+        // Show basic version without advanced features
+    }
+});
+</script>
+
 I'll help you transform your existing portfolio into a **Progressive Web App (PWA)**. This will make your site installable, work offline, and provide a native app-like experience.
 
 ## 📁 File Structure
