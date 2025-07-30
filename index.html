@@ -8855,9 +8855,37 @@ if (typeof module !== 'undefined' && module.exports) {
         PerformanceUtils
     };
 }
-    </script>
-        
+<!-- In your main <script> tag, add this at the very beginning -->
+<script>
+// ====================================
+// SERVICE WORKER REGISTRATION (FIXED)
+// ====================================
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js')
+        .then(registration => {
+            console.log('✅ SW registered successfully');
+        })
+        .catch(error => {
+            console.log('⚠️ SW registration failed, continuing without offline support');
+            // Don't stop the app, just continue without PWA features
+        });
+}
 
-
+// ====================================
+// REST OF YOUR EXISTING CODE FOLLOWS
+// ====================================
+document.addEventListener('DOMContentLoaded', function() {
+    // Your existing PortfolioApp code here...
+    
+    try {
+        // Initialize your app
+        window.portfolioApp = new PortfolioApp();
+    } catch (error) {
+        console.error('App init failed:', error);
+        // Show basic version without advanced features
+    }
+});
+</script>
+      
 </body>
 </html>
