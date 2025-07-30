@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline - Pegearts Portfolio</title>
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            color: #2D3748;
+        }
+        
+        .offline-container {
+            text-align: center;
+            padding: 2rem;
+            max-width: 500px;
+        }
+        
+        .offline-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: #A78BFA;
+        }
+        
+        .offline-title {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #A78BFA, #F9A8D4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .offline-message {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            color: #718096;
+        }
+        
+        .retry-btn {
+            background: linear-gradient(135deg, #A78BFA, #F9A8D4);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        
+        .retry-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .cached-content {
+            margin-top: 2rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+        }
+        
+        .cached-content h3 {
+            margin-bottom: 1rem;
+            color: #2D3748;
+        }
+        
+        .cached-links {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .cached-links li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .cached-links a {
+            color: #A78BFA;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .cached-links a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .offline-container {
+                padding: 1rem;
+            }
+            
+            .offline-title {
+                font-size: 1.5rem;
+            }
+            
+            .offline-icon {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="offline-container">
+        <div class="offline-icon">📱</div>
+        <h1 class="offline-title">You're Offline</h1>
+        <p class="offline-message">
+            No internet connection detected. Don't worry, you can still browse cached content 
+            or try reconnecting to view the full portfolio experience.
+        </p>
+        
+        <button class="retry-btn" onclick="window.location.reload()">
+            Try Again
+        </button>
+        
+        <div class="cached-content">
+            <h3>Available Offline:</h3>
+            <ul class="cached-links">
+                <li><a href="/" onclick="navigateIfOnline(event, '/')">🏠 Home</a></li>
+                <li><a href="/#about" onclick="navigateIfOnline(event, '/#about')">👨‍💼 About Me</a></li>
+                <li><a href="/#services" onclick="navigateIfOnline(event, '/#services')">🛠️ Services</a></li>
+                <li><a href="/#voice-demos" onclick="navigateIfOnline(event, '/#voice-demos')">🎵 Voice Demos</a></li>
+                <li><a href="/#portfolio" onclick="navigateIfOnline(event, '/#portfolio')">💼 Portfolio</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Check if back online
+        window.addEventListener('online', () => {
+            document.querySelector('.offline-message').innerHTML = 
+                '🌐 Connection restored! <a href="/" style="color: #A78BFA;">Return to portfolio</a>';
+        });
+        
+        // Navigate if online
+        function navigateIfOnline(event, url) {
+            if (navigator.onLine) {
+                window.location.href = url;
+            } else {
+                event.preventDefault();
+                alert('Still offline. Please check your connection.');
+            }
+        }
+        
+        // Auto-refresh when online
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.ready.then(registration => {
+                console.log('SW ready on offline page');
+            });
+        }
+    </script>
+</body>
+</html>
