@@ -8568,6 +8568,197 @@ if (document.readyState === 'loading') {
 }
 
 // ====================================
+// PWA INSTALLATION & UPDATE HANDLING
+// ====================================
+
+class PWAManager {
+    constructor() {
+        this.deferredPrompt = null;
+        this.isInstalled = false;
+        this.init();
+    }
+
+    init() {
+        this.registerServiceWorker();
+        this.handleInstallPrompt();
+        this.handleAppInstalled();
+        this.createInstallButton();
+        this.handleUpdates();
+    }
+
+    async registerServiceWorker() {
+        if ('serviceWorker' in navigator) {
+            try {
+                const registration = await navigator.serviceWorker.register('/sw.js');
+                console.log('✅ SW registered:', registration);
+                
+                // Listen for updates
+                registration.addEventListener('updatefound', () => {
+                    const newWorker = registration.installing;
+                    newWorker.addEventListener('statechange', () => {
+                        if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                            this.showUpdateNotification();
+                        }
+                    });
+                });
+            } catch (error) {
+                console.error('❌ SW registration failed:', error);
+            }
+        }
+    }
+
+    handleInstallPrompt() {
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            this.deferredPrompt = e;
+            this.showInstallBanner();
+        });
+    }
+
+    handleAppInstalled() {
+        window.addEventListener('appinstalled', () => {
+            console.log('🎉 PWA installed successfully!');
+            this.isInstalled = true;
+            this.hideInstallBanner();
+            this.showNotification('Portfolio installed successfully! 🎉', 'success');
+        });
+    }
+
+    createInstallButton() {
+        // Create floating install button
+        const installBtn = document.createElement('button');
+        installBtn.className = 'pwa-install-btn';
+        installBtn.innerHTML = `
+            <i class="fas fa-download"></i>
+            <span>Install App</span>
+        `;
+        installBtn.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: linear-gradient(135deg, #A78BFA, #F9A8D4);
+            color: white;
+            border: none;
+            padding: 12px 16px;
+            border-radius: 50px;
+            display: none;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(167, 139, 250, 0.3);
+            transition: all 0.3s ease;
+        `;
+        
+        installBtn.addEventListener('click', () => this.installApp());
+        document.body.appendChild(installBtn);
+        
+        this.installButton = installBtn;
+    }
+
+    showInstallBanner() {
+        if (this.installButton) {
+            this.installButton.style.display = 'flex';
+            
+            // Animate in
+            setTimeout(() => {
+                this.installButton.style.transform = 'translateX(0)';
+                this.installButton.style.opacity = '1';
+            }, 100);
+        }
+    }
+
+    hideInstallBanner() {
+        if (this.installButton) {
+            this.installButton.style.display = 'none';
+        }
+    }
+
+    async installApp() {
+        if (!this.deferredPrompt) return;
+        
+        this.deferredPrompt.prompt();
+        const { outcome } = await this.deferredPrompt.userChoice;
+        
+        if (outcome === 'accepted') {
+            console.log('✅ User accepted install prompt');
+        } else {
+            console.log('❌ User dismissed install prompt');
+        }
+        
+        this.deferredPrompt = null;
+        this.hideInstallBanner();
+    }
+
+    showUpdateNotification() {
+        const updateBanner = document.createElement('div');
+        updateBanner.className = 'pwa-update-banner';
+        updateBanner.innerHTML = `
+            <div class="update-content">
+                <div class="update-text">
+                    <strong>New version available!</strong>
+                    <span>Refresh to get the latest features</span>
+                </div>
+                <button class="update-btn">Update</button>
+                <button class="dismiss-btn">&times;</button>
+            </div>
+        `;
+        updateBanner.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #2D3748;
+            color: white;
+            padding: 12px;
+            z-index: 10000;
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+        `;
+        
+        document.body.appendChild(updateBanner);
+        
+        // Animate in
+        setTimeout(() => {
+            updateBanner.style.transform = 'translateY(0)';
+        }, 100);
+        
+        // Handle update
+        updateBanner.querySelector('.update-btn').addEventListener('click', () => {
+            window.location.reload();
+        });
+        
+        // Handle dismiss
+        updateBanner.querySelector('.dismiss-btn').addEventListener('click', () => {
+            updateBanner.remove();
+        });
+    }
+
+    handleUpdates() {
+        // Listen for service worker messages
+        navigator.serviceWorker?.addEventListener('message', event => {
+            if (event.data && event.data.type === 'UPDATE_AVAILABLE') {
+                this.showUpdateNotification();
+            }
+        });
+    }
+
+    // Method to show notification (integrate with your existing notification system)
+    showNotification(message, type = 'info') {
+        // Use your existing notification system here
+        console.log(`${type.toUpperCase()}: ${message}`);
+    }
+}
+
+// Initialize PWA Manager
+document.addEventListener('DOMContentLoaded', () => {
+    const pwaManager = new PWAManager();
+    window.pwaManager = pwaManager; // Global access
+});
+
+  
+// ====================================
 // ADDITIONAL CSS FOR ANIMATIONS
 // ====================================
 
