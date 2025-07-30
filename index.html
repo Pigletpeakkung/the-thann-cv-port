@@ -12,6 +12,22 @@
 <meta name="robots" content="index, follow">
 <meta name="language" content="English">
 <meta name="author" content="Thanatsitt Santisamranwilai">
+<!-- PWA Meta Tags (Add to your existing head section) -->
+<meta name="application-name" content="Pegearts">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Pegearts">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="msapplication-TileColor" content="#A78BFA">
+<meta name="msapplication-tap-highlight" content="no">
+
+<!-- Theme Colors -->
+<meta name="theme-color" content="#A78BFA">
+<meta name="msapplication-navbutton-color" content="#A78BFA">
+<meta name="apple-mobile-web-app-status-bar-style" content="#A78BFA">
+
+<!-- Splash Screen Colors -->
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website">
@@ -4204,7 +4220,67 @@ img {
     color: white !important;
 }
 
+/* PWA Specific Styles */
+.pwa-install-btn {
+    animation: pulse 2s infinite;
+}
 
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.pwa-update-banner .update-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.update-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.update-btn {
+    background: #A78BFA;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.dismiss-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin-left: 12px;
+}
+
+/* Standalone mode adjustments */
+@media (display-mode: standalone) {
+    body {
+        padding-top: 20px; /* Account for no browser chrome */
+    }
+    
+    .navbar {
+        padding-top: 20px; /* Extra padding for status bar on iOS */
+    }
+}
+
+/* iOS specific PWA styles */
+@supports (-webkit-touch-callout: none) {
+    .pwa-install-btn {
+        bottom: 90px; /* Account for iOS home indicator */
+    }
+}
     </style>
 </head>
 <body>
@@ -5275,6 +5351,21 @@ img {
 <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js" defer></script>
 <script>
+
+  // ====================================
+// SERVICE WORKER REGISTRATION (FIXED)
+// ====================================
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js')
+        .then(registration => {
+            console.log('✅ SW registered successfully');
+        })
+        .catch(error => {
+            console.log('⚠️ SW registration failed, continuing without offline support');
+            // Don't stop the app, just continue without PWA features
+        });
+}
+
 // ====================================
 // MAIN APPLICATION INITIALIZATION
 // ====================================
@@ -8843,6 +8934,21 @@ Browser Support: Modern Browsers + Fallbacks
 
 Need support? Check the console for any errors or warnings.
 `);
+
+  // ====================================
+// REST OF YOUR EXISTING CODE FOLLOWS
+// ====================================
+document.addEventListener('DOMContentLoaded', function() {
+    // Your existing PortfolioApp code here...
+    
+    try {
+        // Initialize your app
+        window.portfolioApp = new PortfolioApp();
+    } catch (error) {
+        console.error('App init failed:', error);
+        // Show basic version without advanced features
+    }
+});
 
 
       </script>
