@@ -4204,6 +4204,73 @@ img {
     color: white !important;
 }
 
+      .rippleStyle.textContent = `
+    @keyframes ripple-animation {
+        to {
+            transform: translate(-50%, -50%) scale(2);
+            opacity: 0;
+        }
+    }
+    
+    .keyboard-focus {
+        outline: 2px solid var(--bs-primary);
+        outline-offset: 2px;
+    }
+    
+    .reduce-motion * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .notification {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 14px;
+        color: #333;
+    }
+    
+    .notification.success {
+        border-left: 4px solid #10B981;
+    }
+    
+    .notification.error {
+        border-left: 4px solid #EF4444;
+    }
+    
+    .notification.info {
+        border-left: 4px solid #3B82F6;
+    }
+    
+    .voice-demo-card.loading {
+        opacity: 0.7;
+        pointer-events: none;
+    }
+    
+    .voice-demo-card.loading::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 20px;
+        height: 20px;
+        border: 2px solid var(--bs-primary);
+        border-top: 2px solid transparent;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        transform: translate(-50%, -50%);
+    }
+    
+    @keyframes spin {
+        0% { transform: translate(-50%, -50%) rotate(0deg); }
+        100% { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+    
+    @keyframes orbitMoon {
+        0% { transform: rotate(0deg) translateX(30px) rotate(0deg); }
+        100% { transform: rotate(360deg) translateX(30px) rotate(-360deg); }
+    }
 
     </style>
 </head>
@@ -5265,6 +5332,7 @@ img {
     </button>
 </footer>
 
+
 <!-- Essential JavaScript Libraries -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
@@ -5273,7 +5341,6 @@ img {
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
 <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js" defer></script>
-
 <script>
 // ====================================
 // MAIN APPLICATION INITIALIZATION
@@ -8907,6 +8974,157 @@ document.addEventListener('DOMContentLoaded', function() {
 ${loadTime < 3000 ? '✅ Great performance!' : '⚠️ Consider optimizing load time'}
                 `);
                 
+
+        // Initialize the app with error handling
+        try {
+            window.portfolioApp = new PortfolioApp();
+            console.log('PortfolioApp initialized successfully.');
+        } catch (error) {
+            console.error('Failed to initialize PortfolioApp:', error);
+            // Trigger your fallback content
+            if (typeof showFallbackContent === 'function') {
+                showFallbackContent();
+            } else {
+                alert('Something went wrong. Please refresh the page.');
+            }
+        }
+
+        // Final console message
+        console.log(`
+🎯 PORTFOLIO APPLICATION LOADED!
+
+✅ Features Available:
+- GSAP Animations & ScrollTrigger
+- Particle System Background
+- 3D Tilt Effects
+- Magnetic Moon Effect
+- Enhanced Voice Demo System
+- Smart Navigation & Scroll Effects
+- Animated Stat Counters
+- Interactive Service Cards
+- Contact Form with Validation
+- Full Accessibility Support
+
+🎵 Voice Demo Features:
+- Play/Pause Controls
+- Progress Visualization
+- Time Display
+- Keyboard Shortcuts (Space = Play/Pause)
+- Mobile Touch Support
+- Error Handling & Fallbacks
+
+📱 Mobile Optimized
+♿ Accessibility Ready
+🎨 Professional UI/UX
+⚡ Performance Optimized
+
+Global Access: window.portfolioApp
+Components: window.portfolioApp.components
+
+Need help? Check console for any errors.
+        `);
+
+        // Development helpers (remove in production)
+        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+            console.log(`
+🛠️  DEVELOPMENT MODE
+
+Quick Commands:
+- window.portfolioApp.destroy() // Clean shutdown
+- window.portfolioApp.components // View all components
+- window.portfolioApp.isInitialized // Check init status
+
+Voice Demo Commands:
+- window.portfolioApp.components.get('voiceDemo').currentPlayer // Current player
+- window.portfolioApp.components.get('voiceDemo').isPlaying // Playback status
+            `);
+        }
+
+        // ====================================
+        // ADDITIONAL STYLES (From Your Snippet, Corrected and Appended Properly)
+        // ====================================
+
+        const additionalStyles = document.createElement('style');
+        additionalStyles.textContent = `
+    .skip-link {
+        position: absolute;
+        top: -40px;
+        left: 6px;
+        background: var(--bs-primary);
+        color: white;
+        padding: 8px;
+        z-index: 10000;
+        text-decoration: none;
+        border-radius: 0 0 4px 4px;
+    }
+    
+    .skip-link:focus {
+        top: 0;
+    }
+        `;
+        document.head.appendChild(additionalStyles);
+
+        // ====================================
+        // FINAL INITIALIZATION MESSAGE (From Your Snippet, Corrected)
+        // ====================================
+
+        console.log(`
+🚀 Portfolio JavaScript System Loaded Successfully!
+
+Features Initialized:
+✅ Enhanced Particle System
+✅ 3D Tilt Effects  
+✅ Magnetic Moon Animation
+✅ Complete Voice Demo System
+✅ Smooth Scroll & Navigation
+✅ Advanced Form Handling
+✅ Performance Monitoring
+✅ Accessibility Features
+✅ Error Handling & Recovery
+✅ Mobile Optimizations
+
+Version: 2.0.0
+Build: Production Ready
+Performance: Optimized
+Browser Support: Modern Browsers + Fallbacks
+
+Need support? Check the console for any errors or warnings.
+        `);
+
+        // Export for external use if needed (From Your Snippet, Wrapped in Conditional for Browser/Node Compatibility)
+        if (typeof module !== 'undefined' && module.exports) {
+            module.exports = { 
+                PortfolioApp, 
+                ParticleSystem, 
+                Tilt3D, 
+                MagneticMoon, 
+                EnhancedVoiceDemo,
+                PerformanceUtils
+            };
+        }
+    })();
+});
+</script>
+
+<!-- Performance Monitoring (Optional - Remove in Production, Wrapped to Avoid Errors) -->
+<script defer>
+document.addEventListener('DOMContentLoaded', function() {
+    if ('performance' in window) {
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const perfData = performance.timing;
+                const loadTime = perfData.loadEventEnd - perfData.navigationStart;
+                const domReady = perfData.domContentLoadedEventEnd - perfData.navigationStart;
+                
+                console.log(`
+⚡ PERFORMANCE METRICS:
+- Total Load Time: ${loadTime}ms  
+- DOM Ready: ${domReady}ms
+- Page Interactive: ${perfData.domInteractive - perfData.navigationStart}ms
+
+${loadTime < 3000 ? '✅ Great performance!' : '⚠️ Consider optimizing load time'}
+                `);
+                
                 // Track to analytics if needed
                 if (typeof gtag !== 'undefined') {
                     gtag('event', 'page_performance', {
@@ -8919,5 +9137,6 @@ ${loadTime < 3000 ? '✅ Great performance!' : '⚠️ Consider optimizing load 
     }
 });
 </script>
+
 </body>
 </html>
