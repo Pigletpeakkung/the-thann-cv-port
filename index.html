@@ -8890,3 +8890,22 @@ ${loadTime < 3000 ? '✅ Great performance!' : '⚠️ Consider optimizing load 
 
 </body>
 </html>
+{
+  "configurations": [
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Launch Chrome against localhost",
+      "url": "http://localhost:${input:port}",
+      "webRoot": "${workspaceFolder}"
+    }
+  ],
+  "inputs": [
+    {
+      "id": "port",
+      "type": "promptString",
+      "description": "The port number your local server is running on",
+      "default": "8080"
+    }
+  ]
+}
