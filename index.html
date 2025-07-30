@@ -8165,14 +8165,11 @@ function initCookieConsent() {
     setTimeout(() => {
         cookieBanner.classList.add('visible');
     }, 2000);
-    
+
     acceptBtn?.addEventListener('click', () => {
         localStorage.setItem('cookieConsent', 'accepted');
         cookieBanner.classList.remove('visible');
         
-        // Initialize analytics or other services here
-        window.portfolioApp?.showNotification('Cookie preferences saved', 'success');
-    });
     
     declineBtn?.addEventListener('click', () => {
         localStorage.setItem('cookieConsent', 'declined');
