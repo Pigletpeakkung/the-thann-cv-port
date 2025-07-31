@@ -1,40 +1,20 @@
 User-agent: *
 Allow: /
 
-# Sitemap location
+# Sitemap
 Sitemap: https://pegearts.com/sitemap.xml
 
-# Disallow sensitive or private directories
+# Disallow sensitive areas (if any)
 Disallow: /admin/
 Disallow: /private/
-Disallow: /temp/
-Disallow: /.git/
+Disallow: /*.json$
 
-# Allow crawling of important asset folders
-Allow: /assets/
-Allow: /css/
-Allow: /js/
-Allow: /images/
-
-# Optional: Crawl delay for all bots
-Crawl-delay: 1
-
-# Specific rules for major bots
+# Allow specific bots
 User-agent: Googlebot
 Allow: /
 
 User-agent: Bingbot
 Allow: /
 
-User-agent: Slurp
-Allow: /
-
-# Social media bots
-User-agent: facebookexternalhit/
-Allow: /
-
-User-agent: Twitterbot
-Allow: /
-
-User-agent: LinkedInBot
-Allow: /
+# Crawl delay
+Crawl-delay: 1
