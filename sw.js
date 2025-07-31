@@ -168,4 +168,61 @@ async function syncContactForm() {
   try {
     const formData = await getStoredFormData();
     if (formData) {
-      const response = await fetch
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        body: JSON.stringify(formData),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      
+      if (response.ok) {
+        await clearStoredFormData();
+        console.log('Service Worker: Form synced successfully');
+      }
+    }
+  } catch (error) {
+    console.error('Service Worker: Form sync failed', error);
+  }
+}
+
+async function getStoredFormData() {
+  return new Promise((resolve, reject) => {
+    const request = indexedDB.open('PegeartsDB', 1);
+    
+    request.onerror = () => reject(request.error);
+    
+    request.onsuccess = () => {
+      const db = request.result;
+      const transaction = db.transaction(['formData'], 'readonly');
+      const store = transaction.objectStore('formData');
+      const getRequest = store.get('pendingForm');
+      
+      getRequest.onsuccess = () => resolve(getRequest.result);
+      getRequest.onerror = () => reject(getRequest.error);
+    };
+    
+    request.onupgradeneeded = (event) => {
+      const db = event.target.result;
+      if (!db.objectStoreNames.contains('formData')) {
+        db.createObjectStore('formData');
+      }
+    };
+  });
+}
+
+async function clearStoredFormData() {
+  return new Promise((resolve, reject) => {
+    const request = indexedDB.open('PegeartsDB', 1);
+    
+    request.onsuccess = () => {
+      const db = request.result;
+      const transaction = db.transaction(['formData'], 'readwrite');
+      const store = transaction.objectStore('formData');
+      const deleteRequest = store.delete('pendingForm');
+      
+      deleteRequest.onsuccess = () => resolve();
+      deleteRequest.onerror = () => reject(deleteRequest.error);
+    };
+  });
+}
