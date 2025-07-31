@@ -1,42 +1,20 @@
 # Dependencies
 node_modules/
-package-lock.json
-yarn.lock
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-# Build outputs
+# Production builds
 dist/
 build/
 *.min.js
 *.min.css
 
-# Environment variables
-.env
-.env.local
-.env.*.local
+# Reports
+reports/
+lighthouse-report.html
 
-# IDE and Editor files
-.idea/
-.vscode/
-*.swp
-*.swo
-.DS_Store
-Thumbs.db
-
-# Debug logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-debug.log
-
-# Cache directories
-.cache/
-.temp/
-.tmp/
-
-# Coverage reports
-coverage/
-
-# System Files
+# OS generated files
 .DS_Store
 .DS_Store?
 ._*
@@ -45,26 +23,24 @@ coverage/
 ehthumbs.db
 Thumbs.db
 
-# Optional npm cache directory
-.npm
+# Editor directories and files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
 
-# Optional eslint cache
-.eslintcache
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
-# Audio files
-*.mp3
-*.wav
-*.ogg
-*.m4a
+# Cache
+.cache/
+.tmp/
 
-# Large media files
-*.mp4
-*.mov
-*.avi
-*.webm
-*.mkv
-
-# Image files
-*.psd
-*.ai
-*.sketch
+# Logs
+logs/
+*.log
