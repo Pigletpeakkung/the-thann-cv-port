@@ -1,103 +1,57 @@
 {
-  "name": "Pegearts | Thanatsitt Santisamranwilai - AI Creative Designer & Digital Innovator",
+  "name": "Pegearts - Thanatsitt Santisamranwilai Portfolio",
   "short_name": "Pegearts",
   "description": "Multilingual AI content developer and creative technologist with 7+ years experience in GPT scriptwriting, voice acting, SEO strategy, and e-commerce solutions.",
   "start_url": "/",
-  "scope": "/",
   "display": "standalone",
-  "orientation": "portrait-primary",
   "background_color": "#F8FAFC",
   "theme_color": "#A78BFA",
-  "categories": ["design", "portfolio", "creative", "ai", "technology", "voice", "writing"],
+  "orientation": "portrait-primary",
+  "scope": "/",
   "lang": "en",
   "dir": "ltr",
-  "iarc_rating_id": "e58c174a-81d2-5c3c-32cc-34b8de4a52e9",
+  "categories": ["portfolio", "design", "technology", "ai"],
   "icons": [
     {
-      "src": "icons/icon-72x72.png",
-      "sizes": "72x72",
-      "type": "image/png",
-      "purpose": "maskable any"
+      "src": "/favicon-16x16.png",
+      "sizes": "16x16",
+      "type": "image/png"
     },
     {
-      "src": "icons/icon-96x96.png",
-      "sizes": "96x96",
-      "type": "image/png",
-      "purpose": "maskable any"
+      "src": "/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
     },
     {
-      "src": "icons/icon-128x128.png",
-      "sizes": "128x128",
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
       "type": "image/png",
-      "purpose": "maskable any"
+      "purpose": "any maskable"
     },
     {
-      "src": "icons/icon-144x144.png",
-      "sizes": "144x144",
-      "type": "image/png",
-      "purpose": "maskable any"
-    },
-    {
-      "src": "icons/icon-152x152.png",
-      "sizes": "152x152",
-      "type": "image/png",
-      "purpose": "maskable any"
-    },
-    {
-      "src": "icons/icon-192x192.png",
+      "src": "/icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "maskable any"
+      "purpose": "any maskable"
     },
     {
-      "src": "icons/icon-384x384.png",
-      "sizes": "384x384",
-      "type": "image/png",
-      "purpose": "maskable any"
-    },
-    {
-      "src": "icons/icon-512x512.png",
+      "src": "/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "maskable any"
-    }
-  ],
-  "screenshots": [
-    {
-      "src": "images/screenshot-desktop.png",
-      "sizes": "1280x720",
-      "type": "image/png",
-      "form_factor": "wide"
-    },
-    {
-      "src": "images/screenshot-mobile.png",
-      "sizes": "390x844",
-      "type": "image/png",
-      "form_factor": "narrow"
+      "purpose": "any maskable"
     }
   ],
   "shortcuts": [
     {
-      "name": "Voice Demos",
-      "short_name": "Voice",
-      "description": "Listen to voice acting samples",
-      "url": "/#voice-demos",
-      "icons": [
-        {
-          "src": "icons/icon-96x96.png",
-          "sizes": "96x96"
-        }
-      ]
-    },
-    {
       "name": "Portfolio",
-      "short_name": "Work",
-      "description": "View my creative work",
+      "short_name": "Portfolio",
+      "description": "View my creative portfolio",
       "url": "/#portfolio",
       "icons": [
         {
-          "src": "icons/icon-96x96.png",
-          "sizes": "96x96"
+          "src": "/favicon-32x32.png",
+          "sizes": "32x32",
+          "type": "image/png"
         }
       ]
     },
@@ -108,12 +62,47 @@
       "url": "/#contact",
       "icons": [
         {
-          "src": "icons/icon-96x96.png",
-          "sizes": "96x96"
+          "src": "/favicon-32x32.png",
+          "sizes": "32x32",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Services",
+      "short_name": "Services",
+      "description": "View my services",
+      "url": "/#services",
+      "icons": [
+        {
+          "src": "/favicon-32x32.png",
+          "sizes": "32x32",
+          "type": "image/png"
         }
       ]
     }
   ],
-  "related_applications": [],
+  "screenshots": [
+    {
+      "src": "/screenshot-desktop.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Pegearts Portfolio Desktop View"
+    },
+    {
+      "src": "/screenshot-mobile.png",
+      "sizes": "360x640",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Pegearts Portfolio Mobile View"
+    }
+  ],
+  "related_applications": [
+    {
+      "platform": "web",
+      "url": "https://pegearts.com"
+    }
+  ],
   "prefer_related_applications": false
 }
