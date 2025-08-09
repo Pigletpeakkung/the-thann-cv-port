@@ -26,13 +26,13 @@
   "author": "Thanatsitt Santisamranwilai <thanattsitt.info@yahoo.co.uk>",
   "license": "MIT",
   "devDependencies": {
-    "live-server": "^1.2.2",
+    "csso-cli": "^4.0.1",
     "http-server": "^14.1.1",
     "imagemin": "^8.0.1",
-    "imagemin-cli": "^7.0.0",
-    "csso-cli": "^4.0.1",
-    "uglify-js": "^3.17.4",
-    "lighthouse": "^11.4.0"
+    "imagemin-cli": "^3.0.0",
+    "lighthouse": "^12.8.1",
+    "live-server": "^1.2.0",
+    "uglify-js": "^3.17.4"
   },
   "repository": {
     "type": "git",

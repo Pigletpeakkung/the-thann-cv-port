@@ -46,7 +46,19 @@
     
     <!-- PWA Manifest -->
     <link rel="manifest" href="manifest.json">
+    <!-- Theme color for various browsers -->
     <meta name="theme-color" content="#a78bfa">
+    <meta name="msapplication-TileColor" content="#a78bfa">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="msapplication-navbutton-color" content="#a78bfa">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="msapplication-TileColor" content="#a78bfa">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="msapplication-TileColor" content="#a78bfa">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="msapplication-TileColor" content="#a78bfa">
+    <meta name="msapplication-navbutton-color" content="#a78bfa">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#a78bfa">
     
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -113,20 +125,20 @@
         <div class="nebula nebula-3"></div>
         
         <!-- Static Shooting Stars (Dynamic ones added by JS) -->
-        <div class="shooting-star" style="top: 20%; animation-delay: 0s;"></div>
-        <div class="shooting-star" style="top: 40%; animation-delay: 15s;"></div>
-        <div class="shooting-star" style="top: 60%; animation-delay: 30s;"></div>
+        <div class="shooting-star shooting-star-1"></div>
+        <div class="shooting-star shooting-star-2"></div>
+        <div class="shooting-star shooting-star-3"></div>
         
         <!-- Static Constellation Lines (Enhanced by JS) -->
-        <div class="constellation" data-constellation="big-dipper" style="top: 15%; left: 20%;">
-            <div class="constellation-line" style="width: 80px; top: 20px; left: 10px; transform: rotate(25deg);"></div>
-            <div class="constellation-line" style="width: 60px; top: 40px; left: 30px; transform: rotate(-15deg);"></div>
-            <div class="constellation-line" style="width: 50px; top: 60px; left: 20px; transform: rotate(45deg);"></div>
+        <div class="constellation" data-constellation="big-dipper">
+            <div class="constellation-line"></div>
+            <div class="constellation-line"></div>
+            <div class="constellation-line"></div>
         </div>
         
-        <div class="constellation" data-constellation="orion" style="top: 50%; right: 25%;">
-            <div class="constellation-line" style="width: 70px; top: 30px; left: 15px; transform: rotate(-30deg);"></div>
-            <div class="constellation-line" style="width: 55px; top: 50px; left: 25px; transform: rotate(20deg);"></div>
+        <div class="constellation" data-constellation="orion">
+            <div class="constellation-line"></div>
+            <div class="constellation-line"></div>
         </div>
 
         <!-- Floating Particles Container (Enhanced by JS) -->
@@ -438,16 +450,16 @@
                             
                             <!-- Enhanced Audio Visualizer -->
 <div class="audio-visualizer" aria-hidden="true">
-    <div class="freq-bar" style="--delay: 0.1s"></div>
-    <div class="freq-bar" style="--delay: 0.15s"></div>
-    <div class="freq-bar" style="--delay: 0.2s"></div>
-    <div class="freq-bar" style="--delay: 0.25s"></div>
-    <div class="freq-bar" style="--delay: 0.3s"></div>
-    <div class="freq-bar" style="--delay: 0.35s"></div>
-    <div class="freq-bar" style="--delay: 0.4s"></div>
-    <div class="freq-bar" style="--delay: 0.45s"></div>
-    <div class="freq-bar" style="--delay: 0.5s"></div>
-    <div class="freq-bar" style="--delay: 0.55s"></div>
+    <div class="freq-bar"></div>
+    <div class="freq-bar"></div>
+    <div class="freq-bar"></div>
+    <div class="freq-bar"></div>
+    <div class="freq-bar"></div>
+    <div class="freq-bar"></div>
+    <div class="freq-bar"></div>
+    <div class="freq-bar"></div>
+    <div class="freq-bar"></div>
+    <div class="freq-bar"></div>
 </div>
                         <!-- Enhanced Features Grid -->
                         <div class="demo-features">
@@ -1419,14 +1431,14 @@
                                         <i class="fas fa-paper-plane"></i>
                                         Send Message
                                     </span>
-                                    <span class="btn-loading" style="display: none;">
+                                    <span class="btn-loading hidden">
                                         <i class="fas fa-spinner fa-spin"></i>
                                         Sending...
                                     </span>
                                     <div class="btn-shine"></div>
                                 </button>
                                 
-                                <button type="button" class="btn btn-outline btn-sm auto-save-status" id="autoSaveStatus" style="display: none;" disabled>
+                                <button type="button" class="btn btn-outline btn-sm auto-save-status hidden" id="autoSaveStatus" disabled>
                                     <i class="fas fa-save"></i>
                                     Auto-saved
                                 </button>
@@ -1434,15 +1446,15 @@
                             
                             <!-- Form Success/Error Messages -->
                             <div class="form-messages">
-                                <div class="alert alert-success" id="successMessage" style="display: none;" role="alert">
+                                <div class="alert alert-success hidden" id="successMessage" role="alert">
                                     <i class="fas fa-check-circle"></i>
                                     <span>Thank you! Your message has been sent successfully. I'll get back to you within 24 hours.</span>
                                 </div>
-                                <div class="alert alert-error" id="errorMessage" style="display: none;" role="alert">
+                                <div class="alert alert-error hidden" id="errorMessage" role="alert">
                                     <i class="fas fa-exclamation-circle"></i>
                                     <span>Sorry, there was an error sending your message. Please try again or contact me directly.</span>
                                 </div>
-                                <div class="alert alert-info" id="validationMessage" style="display: none;" role="alert">
+                                <div class="alert alert-info hidden" id="validationMessage" role="alert">
                                     <i class="fas fa-info-circle"></i>
                                     <span>Please fill in all required fields correctly before submitting.</span>
                                 </div>
@@ -1588,13 +1600,13 @@
     </button>
 
     <!-- PWA Install Button -->
-    <button class="pwa-install-btn" id="pwa-install-btn" style="display: none;" aria-label="Install App" data-track="pwa-install">
+    <button class="pwa-install-btn hidden" id="pwa-install-btn" aria-label="Install App" data-track="pwa-install">
         <i class="fas fa-download"></i>
         <span>Install App</span>
     </button>
 
     <!-- Cookie Consent Banner -->
-    <div class="cookie-banner" id="cookieBanner" style="display: none;" role="dialog" aria-label="Cookie consent">
+    <div class="cookie-banner hidden" id="cookieBanner" role="dialog" aria-label="Cookie consent">
         <div class="cookie-content">
             <div class="cookie-text">
                 <i class="fas fa-cookie-bite"></i>
@@ -1633,7 +1645,7 @@
     </div>
 
     <!-- Loading Overlay -->
-    <div class="loading-overlay" id="loadingOverlay" style="display: none;">
+    <div class="loading-overlay hidden" id="loadingOverlay">
         <div class="loading-content">
             <div class="loading-spinner-large"></div>
             <p class="loading-text">Processing...</p>
