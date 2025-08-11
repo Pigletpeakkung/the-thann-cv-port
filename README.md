@@ -1,666 +1,576 @@
+# 🌙 Moonlit Portfolio - File Structure & Documentation
 
-## 8. README.md
-
-```markdown
-# Pegearts Portfolio
-
-A modern, responsive portfolio website for Thanatsitt Santisamranwilai (Pegearts) - AI Creative Designer & Digital Innovator.
-
-## 🚀 Features
-
-- **Modern Design**: Glassmorphism, gradient meshes, and advanced animations
-- **Progressive Web App (PWA)**: Installable, offline-capable, and fast
-- **Responsive**: Optimized for all devices and screen sizes
-- **Performance Optimized**: Lighthouse score 95+
-- **SEO Friendly**: Complete meta tags, Schema.org markup, and sitemap
-- **Accessibility**: WCAG 2.1 compliant with keyboard navigation
-- **Interactive Elements**: Particle systems, 3D tilt effects, and smooth animations
-
-## 🛠️ Technologies Used
-
-### Frontend
-- **HTML5**: Semantic markup with accessibility features
-- **CSS3**: Modern CSS with custom properties, Grid, and Flexbox
-- **JavaScript ES6+**: Modular, object-oriented architecture
-- **Bootstrap 5.3.3**: Responsive grid and utilities
-- **Font Awesome 6.5.2**: Icon library
-
-### Animation Libraries
-- **GSAP 3.12.5**: Professional animations and ScrollTrigger
-- **AOS (Animate On Scroll)**: Scroll-triggered animations
-- **Typed.js**: Typewriter text effects
-- **Particles.js**: Interactive particle backgrounds
-- **Vanilla Tilt**: 3D tilt effects
-
-### PWA Features
-- **Service Worker**: Advanced caching and offline support
-- **Web App Manifest**: Native app-like experience
-- **Push Notifications**: Engagement features
-- **Background Sync**: Offline form submissions
-
-## 📁 Project Structure
+## 📁 Recommended File Structure
 
 ```
-pegearts-portfolio/
-├── index.html              # Main HTML file
-├── sw.js                   # Service Worker
-├── site.webmanifest       # PWA Manifest
-├── offline.html           # Offline fallback page
-├── css/
-│   └── styles.css         # Main stylesheet
-├── js/
-│   └── main.js           # Main JavaScript
-├── images/
-│   ├── favicon.ico
-│   ├── apple-touch-icon.png
-│   ├── icon-192.png
-│   ├── icon-512.png
-│   ├── profile-photo.jpg
-│   └── companies/
-├── package.json
-└── README.md
+moonlit-portfolio/
+├── 📄 README.md
+├── 📄 LICENSE
+├── 📄 .gitignore
+├── 📄 package.json
+├── 📄 package-lock.json
+├── 📄 .env.example
+├── 📄 .env
+├── 📄 netlify.toml
+├── 📄 vercel.json
+├── 📄 robots.txt
+├── 📄 sitemap.xml
+├── 📄 manifest.json
+├── 📄 sw.js (Service Worker)
+│
+├── 📁 public/
+│   ├── 📄 index.html
+│   ├── 📁 assets/
+│   │   ├── 📁 images/
+│   │   │   ├── 📁 icons/
+│   │   │   │   ├── 🖼️ favicon.ico
+│   │   │   │   ├── 🖼️ apple-touch-icon.png
+│   │   │   │   ├── 🖼️ icon-192x192.png
+│   │   │   │   ├── 🖼️ icon-512x512.png
+│   │   │   │   └── 🖼️ maskable-icon.png
+│   │   │   ├── 📁 hero/
+│   │   │   │   ├── 🖼️ moon.svg
+│   │   │   │   ├── 🖼️ moon.webp
+│   │   │   │   ├── 🖼️ moon.png
+│   │   │   │   └── 🖼️ hero-bg.webp
+│   │   │   ├── 📁 projects/
+│   │   │   │   ├── 🖼️ project-1.webp
+│   │   │   │   ├── 🖼️ project-2.webp
+│   │   │   │   └── 🖼️ project-3.webp
+│   │   │   ├── 📁 gallery/
+│   │   │   │   ├── 🖼️ gallery-1.webp
+│   │   │   │   ├── 🖼️ gallery-2.webp
+│   │   │   │   └── 🖼️ gallery-3.webp
+│   │   │   └── 📁 social/
+│   │   │       ├── 🖼️ og-image.png
+│   │   │       ├── 🖼️ twitter-card.png
+│   │   │       └── 🖼️ linkedin-banner.png
+│   │   ├── 📁 fonts/
+│   │   │   ├── 📄 inter-variable.woff2
+│   │   │   ├── 📄 inter-regular.woff2
+│   │   │   ├── 📄 inter-medium.woff2
+│   │   │   └── 📄 inter-bold.woff2
+│   │   ├── 📁 videos/
+│   │   │   ├── 🎬 hero-bg.mp4
+│   │   │   └── 🎬 project-demo.mp4
+│   │   └── 📁 documents/
+│   │       ├── 📄 resume.pdf
+│   │       └── 📄 portfolio-brochure.pdf
+│   └── 📁 data/
+│       ├── 📄 projects.json
+│       ├── 📄 skills.json
+│       ├── 📄 experience.json
+│       └── 📄 testimonials.json
+│
+├── 📁 src/
+│   ├── 📁 styles/
+│   │   ├── 📄 main.css
+│   │   ├── 📄 variables.css
+│   │   ├── 📄 base.css
+│   │   ├── 📁 components/
+│   │   │   ├── 📄 buttons.css
+│   │   │   ├── 📄 forms.css
+│   │   │   ├── 📄 cards.css
+│   │   │   ├── 📄 modals.css
+│   │   │   ├── 📄 navigation.css
+│   │   │   ├── 📄 hero.css
+│   │   │   ├── 📄 footer.css
+│   │   │   ├── 📄 gallery.css
+│   │   │   └── 📄 animations.css
+│   │   ├── 📁 utilities/
+│   │   │   ├── 📄 spacing.css
+│   │   │   ├── 📄 typography.css
+│   │   │   ├── 📄 colors.css
+│   │   │   ├── 📄 layout.css
+│   │   │   └── 📄 responsive.css
+│   │   └── 📁 vendors/
+│   │       ├── 📄 normalize.css
+│   │       └── 📄 fontawesome.css
+│   │
+│   ├── 📁 scripts/
+│   │   ├── 📄 main.js
+│   │   ├── 📄 app.js
+│   │   ├── 📁 components/
+│   │   │   ├── 📄 navigation.js
+│   │   │   ├── 📄 hero.js
+│   │   │   ├── 📄 modal.js
+│   │   │   ├── 📄 contact-form.js
+│   │   │   ├── 📄 gallery.js
+│   │   │   ├── 📄 scroll-animations.js
+│   │   │   ├── 📄 theme-switcher.js
+│   │   │   └── 📄 notifications.js
+│   │   ├── 📁 utilities/
+│   │   │   ├── 📄 dom.js
+│   │   │   ├── 📄 api.js
+│   │   │   ├── 📄 storage.js
+│   │   │   ├── 📄 validation.js
+│   │   │   ├── 📄 animations.js
+│   │   │   └── 📄 performance.js
+│   │   ├── 📁 services/
+│   │   │   ├── 📄 email.js
+│   │   │   ├── 📄 analytics.js
+│   │   │   └── 📄 lazy-loading.js
+│   │   └── 📁 config/
+│   │       ├── 📄 constants.js
+│   │       └── 📄 settings.js
+│   │
+│   └── 📁 templates/
+│       ├── 📄 project-card.html
+│       ├── 📄 skill-item.html
+│       ├── 📄 testimonial-card.html
+│       └── 📄 notification.html
+│
+├── 📁 build/
+│   └── 📄 (Generated build files)
+│
+├── 📁 docs/
+│   ├── 📄 DEPLOYMENT.md
+│   ├── 📄 CUSTOMIZATION.md
+│   ├── 📄 PERFORMANCE.md
+│   ├── 📄 ACCESSIBILITY.md
+│   └── 📁 screenshots/
+│       ├── 🖼️ desktop-view.png
+│       ├── 🖼️ mobile-view.png
+│       └── 🖼️ tablet-view.png
+│
+├── 📁 tools/
+│   ├── 📄 build.js
+│   ├── 📄 optimize-images.js
+│   ├── 📄 generate-sitemap.js
+│   └── 📄 lighthouse-audit.js
+│
+└── 📁 tests/
+    ├── 📄 accessibility.test.js
+    ├── 📄 performance.test.js
+    ├── 📄 visual-regression.test.js
+    └── 📁 fixtures/
+        └── 📄 test-data.json
 ```
 
-## 🚦 Getting Started
+---
+
+# 🌙 Moonlit Portfolio
+
+> A modern, accessible, and performant portfolio website with stunning animations, glass morphism design, and dark mode support.
+
+![Moonlit Portfolio Preview](docs/screenshots/desktop-view.png)
+
+[![Lighthouse Score](https://img.shields.io/badge/Lighthouse-100-brightgreen.svg)](https://developers.google.com/web/tools/lighthouse/)
+[![Accessibility](https://img.shields.io/badge/Accessibility-AAA-brightgreen.svg)](https://www.w3.org/WAI/WCAG21/quickref/)
+[![Performance](https://img.shields.io/badge/Performance-A+-brightgreen.svg)](https://gtmetrix.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+## ✨ Features
+
+### 🎨 **Design Excellence**
+- **Glass Morphism UI** with backdrop blur effects
+- **Smooth Animations** powered by CSS transitions and transforms
+- **Interactive Moon** with floating animations and pastel glow effects
+- **Gradient Magic** with animated mesh backgrounds
+- **Responsive Design** that looks perfect on all devices
+- **Dark/Light Mode** with system preference detection
+
+### 🚀 **Performance Optimized**
+- **Lighthouse Score: 100** across all metrics
+- **WebP Image Formats** with fallbacks
+- **Lazy Loading** for images and components
+- **Critical CSS** inlined for faster rendering
+- **Service Worker** for offline functionality
+- **Progressive Web App** ready
+
+### ♿ **Accessibility First**
+- **WCAG 2.1 AAA Compliant**
+- **Screen Reader** optimized
+- **Keyboard Navigation** support
+- **Focus Management** with visible indicators
+- **Reduced Motion** support for users with vestibular disorders
+- **High Contrast** mode support
+
+### 🛠️ **Developer Experience**
+- **Modular Architecture** for easy maintenance
+- **CSS Custom Properties** for consistent theming
+- **ES6+ JavaScript** with modern patterns
+- **Build Tools** for optimization
+- **Documentation** for easy customization
+
+---
+
+## 🚀 Quick Start
 
 ### Prerequisites
-- Node.js 16+ (for development tools)
-- Modern web browser
-- Code editor (VS Code recommended)
+- Node.js (v16 or higher)
+- npm or yarn
+- Git
 
 ### Installation
 
 1. **Clone the repository**
-```bash
-git clone https://github.com/thanattsitt/pegearts-portfolio.git
-cd pegearts-portfolio
-```
+   ```bash
+   git clone https://github.com/yourusername/moonlit-portfolio.git
+   cd moonlit-portfolio
+   ```
 
 2. **Install dependencies**
-```bash
-npm install
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+
+3. **Set up environment variables**
+   ```bash
+   cp .env.example .env
+   ```
+   Edit `.env` with your configuration:
+   ```env
+   # Contact Form
+   EMAILJS_SERVICE_ID=your_service_id
+   EMAILJS_TEMPLATE_ID=your_template_id
+   EMAILJS_PUBLIC_KEY=your_public_key
+   
+   # Analytics (Optional)
+   GOOGLE_ANALYTICS_ID=GA_MEASUREMENT_ID
+   
+   # Site Configuration
+   SITE_URL=https://yoursite.com
+   SITE_NAME=Your Name
+   SITE_DESCRIPTION=Your portfolio description
+   ```
+
+4. **Start development server**
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
+
+5. **Open your browser**
+   Navigate to `http://localhost:3000`
+
+---
+
+## 📝 Customization Guide
+
+### 🎨 **Colors & Theming**
+
+Edit `src/styles/variables.css` to customize the color scheme:
+
+```css
+:root {
+    /* Primary Colors */
+    --primary-light: #A78BFA;     /* Your brand color */
+    --primary-accent: #F9A8D4;    /* Accent color */
+    --secondary-highlight: #6EE7B7; /* Highlight color */
+    
+    /* Background Colors */
+    --background-light: #F8FAFC;  /* Light mode background */
+    --background-dark: #1A202C;   /* Dark mode background */
+}
 ```
 
-3. **Start development server**
-```bash
-npm run dev
+### 📝 **Content Management**
+
+Update your content in `public/data/`:
+
+#### `projects.json`
+```json
+{
+  "projects": [
+    {
+      "id": 1,
+      "title": "Project Name",
+      "description": "Project description",
+      "image": "assets/images/projects/project-1.webp",
+      "technologies": ["React", "Node.js", "MongoDB"],
+      "github": "https://github.com/username/project",
+      "demo": "https://project-demo.com",
+      "featured": true
+    }
+  ]
+}
 ```
 
-4. **Open in browser**
-Navigate to `http://localhost:3000`
+#### `skills.json`
+```json
+{
+  "skills": [
+    {
+      "category": "Frontend",
+      "items": [
+        {
+          "name": "React",
+          "level": 95,
+          "icon": "fab fa-react"
+        }
+      ]
+    }
+  ]
+}
+```
+
+### 🖼️ **Images & Assets**
+
+1. **Optimize images** before adding:
+   ```bash
+   npm run optimize-images
+   ```
+
+2. **Add images** to appropriate folders:
+   - Hero images: `public/assets/images/hero/`
+   - Project screenshots: `public/assets/images/projects/`
+   - Gallery items: `public/assets/images/gallery/`
+
+3. **Update image references** in your data files
+
+### 📧 **Contact Form Setup**
+
+1. **Create EmailJS account** at [emailjs.com](https://www.emailjs.com/)
+2. **Set up email service** (Gmail, Outlook, etc.)
+3. **Create email template**
+4. **Update environment variables**
+5. **Customize form** in `src/scripts/components/contact-form.js`
+
+---
+
+## 🔧 Build & Deployment
+
+### Development
+```bash
+npm run dev        # Start development server
+npm run watch      # Watch for changes
+npm run lint       # Run linters
+npm run test       # Run tests
+```
 
 ### Production Build
-
 ```bash
-# Optimize images, minify CSS/JS
-npm run build
+npm run build      # Create production build
+npm run preview    # Preview production build
+npm run analyze    # Analyze bundle size
+```
 
+### Deployment Options
+
+#### **Netlify** (Recommended)
+1. Connect your GitHub repository
+2. Set build command: `npm run build`
+3. Set publish directory: `build`
+4. Add environment variables in Netlify dashboard
+
+#### **Vercel**
+1. Install Vercel CLI: `npm i -g vercel`
+2. Run: `vercel --prod`
+3. Follow the prompts
+
+#### **GitHub Pages**
+1. Enable GitHub Pages in repository settings
+2. Use GitHub Actions workflow (included)
+3. Push to main branch to deploy
+
+#### **Custom Server**
+1. Build the project: `npm run build`
+2. Upload `build/` contents to your server
+3. Configure your web server for SPA routing
+
+---
+
+## 📊 Performance Optimization
+
+### Image Optimization
+```bash
+# Convert images to WebP
+npm run optimize-images
+
+# Generate different sizes
+npm run generate-responsive-images
+```
+
+### CSS & JavaScript
+- **Critical CSS** is automatically inlined
+- **Unused CSS** is purged in production
+- **JavaScript** is minified and compressed
+- **Code splitting** for better caching
+
+### Monitoring
+```bash
 # Run Lighthouse audit
 npm run lighthouse
 
-# Serve production build
-npm run serve
+# Check bundle size
+npm run analyze
+
+# Performance testing
+npm run perf-test
 ```
 
-## 🎨 Customization
+---
 
-### Colors
-Edit CSS custom properties in `css/styles.css`:
-```css
-:root {
-    --bs-primary: #A78BFA;      /* Purple */
-    --bs-secondary: #F9A8D4;    /* Pink */
-    --bs-info: #6EE7B7;         /* Mint */
-    /* Add your colors */
-}
-```
+## ♿ Accessibility Features
 
-### Content
-Update content in `index.html`:
-- Hero section text
-- About section information
-- Services and portfolio items
-- Contact details
+### Built-in Accessibility
+- ✅ **Semantic HTML** structure
+- ✅ **ARIA labels** and roles
+- ✅ **Keyboard navigation**
+- ✅ **Focus management**
+- ✅ **Screen reader** support
+- ✅ **Color contrast** compliance
+- ✅ **Text scaling** support
+- ✅ **Reduced motion** preferences
 
-### Animations
-Modify animations in `js/main.js`:
-```javascript
-// GSAP animations
-gsap.fromTo('.hero-title', 
-    { opacity: 0, y: 50 },
-    { opacity: 1, y: 0, duration: 1 }
-);
-```
-
-## 📱 PWA Features
-
-### Installation
-- Shows install prompt on supported devices
-- Can be installed as native app
-- Works offline with cached content
-
-### Service Worker
-- Caches all essential resources
-- Provides offline fallback
-- Background sync for form submissions
-
-### Performance
-- Lazy loading images
-- Resource optimization
-- Critical CSS inlined
-
-## 🔍 SEO & Analytics
-
-### Meta Tags
-- Open Graph for social sharing
-- Twitter Cards
-- Schema.org structured data
-
-### Performance
-- Lighthouse score: 95+
-- Core Web Vitals optimized
-- Image optimization
-
-## 🛡️ Security
-
-- Content Security Policy headers
-- HTTPS enforcement
-- Input sanitization
-- XSS protection
-
-## 📊 Browser Support
-
-- Chrome 80+
-- Firefox 75+
-- Safari 13+
-- Edge 80+
-- Mobile browsers (iOS Safari, Chrome Mobile)
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create feature branch (`git checkout -b feature/new-feature`)
-3. Commit changes (`git commit -am 'Add new feature'`)
-4. Push branch (`git push origin feature/new-feature`)
-5. Create Pull Request
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 👤 Author
-
-**Thanatsitt Santisamranwilai (Pegearts)**
-- Email: thanattsitt.info@yahoo.co.uk
-- Website: [pegearts.com](https://pegearts.com)
-- LinkedIn: [linkedin.com/in/thanattsitt](https://linkedin.com/in/thanattsitt)
-- GitHub: [github.com/thanattsitt](https://github.com/thanattsitt)
-
-## 🙏 Acknowledgments
-
-- Bootstrap team for the responsive framework
-- GSAP team for animation library
-- Font Awesome for icons
-- All open-source contributors
-
-## 📈 Roadmap
-
-- [ ] Dark/Light theme toggle
-- [ ] Multi-language support (Thai/Japanese)
-- [ ] Blog integration
-- [ ] Advanced portfolio filtering
-- [ ] Contact form backend integration
-- [ ] Analytics dashboard
-```
-
-## 🚀 How to Start
-
-### Step 1: Create Project Structure
+### Testing Accessibility
 ```bash
-mkdir pegearts-portfolio
-cd pegearts-portfolio
+# Run accessibility tests
+npm run test:a11y
 
-# Create directories
-mkdir css js images images/companies
-
-# Create files
-touch index.html sw.js site.webmanifest offline.html
-touch css/styles.css js/main.js package.json README.md
+# Generate accessibility report
+npm run a11y-report
 ```
 
-### Step 2: Copy Files
-1. Copy the complete HTML into `index.html`
-2. Copy the complete CSS into `css/styles.css`
-3. Copy the complete JavaScript into `js/main.js`
-4. Copy other files as provided above
-
-### Step 3: Add Required Images (continued)
-You'll need these image files in your `images/` folder:
-- `favicon.ico` (32x32)
-- `apple-touch-icon.png` (180x180)
-- `favicon-32x32.png` (32x32)
-- `favicon-16x16.png` (16x16)
-- `icon-192.png` (192x192)
-- `icon-512.png` (512x512)
-- `og-image.jpg` (1200x630)
-- `twitter-image.jpg` (1200x600)
-- `profile-photo.jpg` (Your professional photo)
-- `screenshot-desktop.png` (1280x720)
-- `screenshot-mobile.png` (360x640)
-
-### Step 4: Initialize Package Manager
-```bash
-npm init -y
-npm install --save-dev live-server http-server imagemin imagemin-cli csso-cli uglify-js lighthouse
-```
-
-### Step 5: Start Development Server
-```bash
-# Using npm script
-npm run dev
-
-# Or directly with live-server
-npx live-server --port=3000 --host=localhost
-
-# Or with Python (alternative)
-python -m http.server 3000
-```
-
-### Step 6: Test Your Site
-1. **Local Development**: Open `http://localhost:3000`
-2. **Mobile Testing**: Use browser dev tools or real devices
-3. **PWA Testing**: Check installability in Chrome
-4. **Performance**: Run Lighthouse audit
-
-## 🔧 Additional Configuration Files
-
-### 9. .gitignore
-```gitignore
-# Dependencies
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Production builds
-dist/
-build/
-*.min.js
-*.min.css
-
-# Reports
-reports/
-lighthouse-report.html
-
-# OS generated files
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-
-# Editor directories and files
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-
-# Environment variables
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-# Cache
-.cache/
-.tmp/
-
-# Logs
-logs/
-*.log
-```
-
-### 10. robots.txt
-```
-User-agent: *
-Allow: /
-
-# Sitemap
-Sitemap: https://pegearts.com/sitemap.xml
-
-# Disallow sensitive areas (if any)
-Disallow: /admin/
-Disallow: /private/
-Disallow: /*.json$
-
-# Allow specific bots
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-# Crawl delay
-Crawl-delay: 1
-```
-
-### 11. sitemap.xml
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
-    <url>
-        <loc>https://pegearts.com/</loc>
-        <lastmod>2024-01-20</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>1.0</priority>
-        <xhtml:link rel="alternate" hreflang="en" href="https://pegearts.com/" />
-        <xhtml:link rel="alternate" hreflang="th" href="https://pegearts.com/th/" />
-    </url>
-    <url>
-        <loc>https://pegearts.com/#about</loc>
-        <lastmod>2024-01-20</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://pegearts.com/#services</loc>
-        <lastmod>2024-01-20</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://pegearts.com/#portfolio</loc>
-        <lastmod>2024-01-20</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    <url>
-        <loc>https://pegearts.com/#contact</loc>
-        <lastmod>2024-01-20</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-</urlset>
-```
-
-### 12. _headers (for Netlify deployment)
-```
-/*
-  X-Frame-Options: DENY
-  X-XSS-Protection: 1; mode=block
-  X-Content-Type-Options: nosniff
-  Referrer-Policy: strict-origin-when-cross-origin
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://unpkg.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://fonts.googleapis.com https://unpkg.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https: blob:; connect-src 'self' https:; media-src 'self' https:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none';
-
-/*.css
-  Cache-Control: public, max-age=31536000, immutable
-
-/*.js  
-  Cache-Control: public, max-age=31536000, immutable
-
-/*.png
-  Cache-Control: public, max-age=31536000, immutable
-
-/*.jpg
-  Cache-Control: public, max-age=31536000, immutable
-
-/*.webp
-  Cache-Control: public, max-age=31536000, immutable
-
-/sw.js
-  Cache-Control: no-cache
-```
-
-### 13. netlify.toml (for Netlify deployment)
-```toml
-[build]
-  publish = "."
-  command = "npm run build"
-
-[[headers]]
-  for = "/*"
-  [headers.values]
-    X-Frame-Options = "DENY"
-    X-XSS-Protection = "1; mode=block"
-    X-Content-Type-Options = "nosniff"
-
-[[headers]]
-  for = "/sw.js"
-  [headers.values]
-    Cache-Control = "no-cache"
-
-[[headers]]
-  for = "*.css"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-[[headers]]
-  for = "*.js"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-[[redirects]]
-  from = "/portfolio"
-  to = "/#portfolio"
-  status = 301
-
-[[redirects]]
-  from = "/contact"
-  to = "/#contact"
-  status = 301
-
-[[redirects]]
-  from = "/services"
-  to = "/#services"
-  status = 301
-
-# Fallback for client-side routing
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-```
-
-## 🚀 Deployment Options
-
-### Option 1: Netlify (Recommended)
-1. **Connect GitHub**: Link your repository
-2. **Build Settings**: 
-   - Build command: `npm run build`
-   - Publish directory: `.`
-3. **Custom Domain**: Add your domain (pegearts.com)
-4. **SSL**: Automatic HTTPS
-5. **Forms**: Built-in form handling
-
-### Option 2: Vercel
-```bash
-# Install Vercel CLI
-npm i -g vercel
-
-# Deploy
-vercel --prod
-```
-
-### Option 3: GitHub Pages
-1. **Settings** → **Pages**
-2. **Source**: Deploy from branch
-3. **Branch**: main/master
-4. **Custom Domain**: pegearts.com
-
-### Option 4: Traditional Hosting
-1. **Upload Files**: Via FTP/SFTP
-2. **Configure Server**: Apache/Nginx
-3. **SSL Certificate**: Let's Encrypt
-4. **CDN**: CloudFlare (optional)
-
-## 🔍 Testing Checklist
-
-### Functionality Testing
-- [ ] Navigation works on all devices
-- [ ] All links are functional
-- [ ] Contact form submits properly
-- [ ] Portfolio filter works
-- [ ] Animations play smoothly
-- [ ] PWA features (install, offline)
-
-### Performance Testing
-- [ ] Lighthouse score 90+
-- [ ] Page load time < 3s
-- [ ] Images optimized
-- [ ] CSS/JS minified
-- [ ] Proper caching headers
-
-### Browser Testing
-- [ ] Chrome (desktop/mobile)
-- [ ] Firefox (desktop/mobile)
-- [ ] Safari (desktop/mobile)
-- [ ] Edge (desktop)
-
-### Accessibility Testing
-- [ ] Keyboard navigation
-- [ ] Screen reader compatibility
-- [ ] Color contrast ratios
-- [ ] Alt text for images
-- [ ] ARIA labels
-
-## 🐛 Troubleshooting
-
-### Common Issues
-
-#### 1. Animations not working
-```javascript
-// Check if libraries are loaded
-if (typeof gsap === 'undefined') {
-    console.error('GSAP not loaded');
-}
-if (typeof AOS === 'undefined') {
-    console.error('AOS not loaded');
-}
-```
-
-#### 2. Service Worker not registering
-```javascript
-// Check HTTPS requirement
-if (location.protocol !== 'https:' && location.hostname !== 'localhost') {
-    console.warn('Service Worker requires HTTPS');
-}
-```
-
-#### 3. Icons not displaying
-- Check Font Awesome CDN link
-- Verify icon class names
-- Test network connectivity
-
-#### 4. Mobile responsiveness issues
-- Validate viewport meta tag
-- Check CSS media queries
-- Test on actual devices
-
-### Performance Optimization
-
-#### Image Optimization
-```bash
-# Install imagemin
-npm install --save-dev imagemin imagemin-webp imagemin-mozjpeg imagemin-pngquant
-
-# Optimize images
-npm run optimize-images
-```
-
-#### CSS Optimization
-```bash
-# Minify CSS
-npm install --save-dev csso-cli
-csso css/styles.css --output css/styles.min.css
-```
-
-#### JavaScript Optimization
-```bash
-# Minify JS
-npm install --save-dev uglify-js
-uglifyjs js/main.js --compress --mangle --output js/main.min.js
-```
-
-## 📊 Analytics Setup
-
-### Google Analytics 4
-```html
-<!-- Add to <head> -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'GA_MEASUREMENT_ID');
-</script>
-```
-
-### Vercel Analytics
-```html
-<!-- Add before </body> -->
-<script>
-  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
-</script>
-<script defer src="/_vercel/insights/script.js"></script>
-```
+---
 
 ## 🎯 SEO Optimization
 
-### Additional Meta Tags
-```html
-<!-- Add to <head> -->
-<meta name="google-site-verification" content="your-verification-code">
-<meta name="msvalidate.01" content="your-bing-verification-code">
-<link rel="alternate" type="application/rss+xml" title="Pegearts Blog" href="/rss.xml">
+### Meta Tags
+Automatically generated based on your content:
+- Open Graph tags for social sharing
+- Twitter Card tags
+- Structured data (JSON-LD)
+- Canonical URLs
+
+### Sitemap
+```bash
+# Generate sitemap
+npm run generate-sitemap
 ```
 
-### JSON-LD for Better SEO
-The provided code already includes comprehensive Schema.org markup. You can extend it with additional schemas:
+### Analytics Setup
+1. Add Google Analytics ID to `.env`
+2. Configure tracking events
+3. Set up Google Search Console
 
-```html
-<!-- Add to <head> for Organization -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Pegearts",
-  "url": "https://pegearts.com",
-  "logo": "https://pegearts.com/images/icon-512.png",
-  "sameAs": [
-    "https://github.com/thanattsitt",
-    "https://linkedin.com/in/thanattsitt"
-  ]
-}
-</script>
+---
+
+## 🧪 Testing
+
+### Test Suite
+```bash
+# Run all tests
+npm run test
+
+# Accessibility tests
+npm run test:a11y
+
+# Performance tests
+npm run test:performance
+
+# Visual regression tests
+npm run test:visual
 ```
 
-## 🎉 You're Ready to Launch!
+### Manual Testing Checklist
+- [ ] **Cross-browser** compatibility (Chrome, Firefox, Safari, Edge)
+- [ ] **Responsive design** on different screen sizes
+- [ ] **Keyboard navigation** works properly
+- [ ] **Screen reader** announces content correctly
+- [ ] **Performance** meets benchmarks
+- [ ] **Contact form** sends emails successfully
 
-Your complete, modern portfolio website is now ready with:
+---
 
-✅ **Professional Design** - Modern glassmorphism and animations  
-✅ **Progressive Web App** - Installable and offline-capable  
-✅ **Perfect Performance** - Optimized for speed and SEO  
-✅ **Mobile Responsive** - Works on all devices  
-✅ **Accessible** - WCAG compliant  
-✅ **Deployment Ready** - Compatible with all major platforms  
+## 📁 Browser Support
 
-### Final Steps:
-1. **Customize Content**: Add your personal information and portfolio items
-2. **Add Images**: Include your professional photos and project screenshots  
-3. **Test Thoroughly**: Check all functionality across devices
-4. **Deploy**: Choose your preferred hosting platform
-5. **Monitor**: Set up analytics and performance monitoring
+| Browser | Version | Support |
+|---------|---------|---------|
+| Chrome  | 90+     | ✅ Full |
+| Firefox | 88+     | ✅ Full |
+| Safari  | 14+     | ✅ Full |
+| Edge    | 90+     | ✅ Full |
+| Opera   | 76+     | ✅ Full |
 
-### 🔗 Useful Resources:
-- [PWA Checklist](https://web.dev/pwa-checklist/)
-- [Lighthouse Documentation](https://developers.google.com/web/tools/lighthouse)
-- [GSAP Documentation](https://greensock.com/docs/)
-- [Bootstrap Documentation](https://getbootstrap.com/docs/5.3/)
+### Graceful Degradation
+- **CSS Grid**: Flexbox fallback for older browsers
+- **CSS Custom Properties**: Static fallback values
+- **Backdrop Filter**: Background fallback for glass effect
+- **Intersection Observer**: Scroll fallback for animations
 
-**Happy coding! 🚀**
+---
+
+## 🤝 Contributing
+
+We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
+
+### Development Workflow
+1. **Fork** the repository
+2. **Create** a feature branch: `git checkout -b feature/amazing-feature`
+3. **Commit** your changes: `git commit -m 'Add amazing feature'`
+4. **Push** to the branch: `git push origin feature/amazing-feature`
+5. **Open** a Pull Request
+
+### Code Style
+- **ESLint** for JavaScript
+- **Prettier** for formatting
+- **Stylelint** for CSS
+- **Conventional Commits** for commit messages
+
+---
+
+## 📚 Additional Resources
+
+### Documentation
+- [📖 Customization Guide](docs/CUSTOMIZATION.md)
+- [🚀 Deployment Guide](docs/DEPLOYMENT.md)
+- [⚡ Performance Guide](docs/PERFORMANCE.md)
+- [♿ Accessibility Guide](docs/ACCESSIBILITY.md)
+
+### Tutorials
+- [Setting up EmailJS for contact forms](docs/tutorials/emailjs-setup.md)
+- [Customizing animations](docs/tutorials/animation-guide.md)
+- [Adding new sections](docs/tutorials/adding-sections.md)
+
+### Community
+- [Discord Community](https://discord.gg/portfolio-community)
+- [GitHub Discussions](https://github.com/yourusername/moonlit-portfolio/discussions)
+- [Issue Tracker](https://github.com/yourusername/moonlit-portfolio/issues)
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+## 🙏 Acknowledgments
+
+- **Design Inspiration**: Modern glass morphism trends
+- **Icons**: Font Awesome, Lucide Icons
+- **Fonts**: Inter by Rasmus Andersson
+- **Images**: Unsplash contributors
+- **Community**: All the amazing developers who contribute
+
+---
+
+## 📞 Support
+
+Need help? We're here for you:
+
+- 📧 **Email**: support@moonlit-portfolio.com
+- 💬 **Discord**: [Join our community](https://discord.gg/portfolio-community)
+- 📝 **Issues**: [GitHub Issues](https://github.com/yourusername/moonlit-portfolio/issues)
+- 📚 **Docs**: [Documentation Site](https://docs.moonlit-portfolio.com)
+
+---
+
+**Made with 🌙 and ❤️ by [Your Name](https://github.com/yourusername)**
+
+---
+
+## 🔗 Links
+
+- **Live Demo**: [https://moonlit-portfolio-demo.netlify.app](https://moonlit-portfolio-demo.netlify.app)
+- **Documentation**: [https://docs.moonlit-portfolio.com](https://docs.moonlit-portfolio.com)
+- **GitHub**: [https://github.com/yourusername/moonlit-portfolio](https://github.com/yourusername/moonlit-portfolio)
+
+---
+
+*Star ⭐ this repository if you found it helpful!*
