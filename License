@@ -1,0 +1,326 @@
+# 📄 **MIT License**
+
+## **ThePegeArts Moonlit Portfolio Design System**
+
+**Copyright (c) 2024 Thanattsitt Santisamranwilai**
+
+**Contact**: thanattsitt.info@yahoo.co.uk  
+**GitHub**: https://github.com/Pigletpeakkung/thepegearts  
+**Website**: https://thepegearts.vercel.app  
+
+---
+
+## **License Terms**
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+### **Conditions**
+
+1. **Copyright Notice**: The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+2. **Attribution**: When using this design system in your projects, attribution to "ThePegeArts by Thanattsitt Santisamranwilai" is appreciated but not required.
+
+3. **No Warranty**: THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+
+4. **Limitation of Liability**: IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+---
+
+## **Additional Terms & Guidelines**
+
+### **Permitted Uses** ✅
+
+- **Commercial Projects**: Use ThePegeArts in commercial websites, applications, and products
+- **Personal Projects**: Create portfolios, blogs, and personal websites
+- **Educational Use**: Use in courses, tutorials, and educational materials
+- **Modification**: Customize, extend, and modify the design system for your needs
+- **Distribution**: Include in templates, themes, or starter kits
+- **Client Work**: Use in projects for clients and customers
+
+### **Attribution Examples** (Optional but Appreciated)
+
+#### **In Footer**
+```html
+<footer>
+    <p>Built with <a href="https://github.com/Pigletpeakkung/thepegearts">ThePegeArts</a> by <a href="mailto:thanattsitt.info@yahoo.co.uk">Thanattsitt Santisamranwilai</a></p>
+</footer>
+```
+
+#### **In README**
+```markdown
+## Credits
+This project uses the [ThePegeArts Design System](https://github.com/Pigletpeakkung/thepegearts) created by [Thanattsitt Santisamranwilai](mailto:thanattsitt.info@yahoo.co.uk).
+```
+
+#### **In Code Comments**
+```css
+/*
+ * ThePegeArts Design System
+ * Created by Thanattsitt Santisamranwilai
+ * https://github.com/Pigletpeakkung/thepegearts
+ */
+```
+
+### **What You Don't Need to Do** 🚫
+
+- **No License Fees**: This design system is completely free
+- **No Registration**: No need to register or sign up to use
+- **No Approval**: No need to ask permission for use
+- **No Mandatory Attribution**: Attribution is appreciated but not legally required
+- **No Usage Reporting**: No need to report how you're using the system
+
+---
+
+## **Third-Party Dependencies**
+
+ThePegeArts includes or recommends the following third-party resources:
+
+### **Fonts**
+- **Inter Font** - SIL Open Font License 1.1
+  - Creator: Rasmus Andersson
+  - License: https://scripts.sil.org/OFL
+
+- **JetBrains Mono** - SIL Open Font License 1.1
+  - Creator: JetBrains
+  - License: https://scripts.sil.org/OFL
+
+### **CSS Libraries**
+- **Normalize.css** - MIT License
+  - Creators: Nicolas Gallagher and Jonathan Neal
+  - License: https://github.com/necolas/normalize.css/blob/master/LICENSE.md
+
+### **Icons & Graphics**
+- **Emoji Icons** - Unicode Standard
+  - Used for decorative purposes in examples
+  - License: Public Domain
+
+---
+
+## **Contribution License**
+
+### **For Contributors**
+
+By contributing to ThePegeArts, you agree that:
+
+1. **Your Contributions**: Are your original work or you have permission to contribute them
+2. **License Grant**: You grant Thanattsitt Santisamranwilai and all users the right to use your contributions under this MIT License
+3. **No Warranty**: Your contributions are provided "as is" without warranty
+4. **Attribution**: You may be credited as a contributor in project documentation
+
+### **Types of Contributions**
+- **Code**: CSS, JavaScript, HTML improvements and additions
+- **Design**: Visual design improvements and new components
+- **Documentation**: Wiki pages, tutorials, and guides
+- **Examples**: Sample projects and use cases
+- **Bug Reports**: Issues and bug findings
+- **Feature Requests**: Ideas and suggestions for improvements
+
+---
+
+## **Commercial Use Guidelines**
+
+### **Permitted Commercial Activities** ✅
+
+#### **Website Development**
+- Client websites and web applications
+- E-commerce sites and online stores
+- Corporate websites and landing pages
+- SaaS applications and platforms
+
+#### **Template & Theme Creation**
+- Premium website templates
+- WordPress, React, Vue themes
+- UI kit distributions
+- Starter project templates
+
+#### **Educational & Training**
+- Online courses and tutorials
+- Design system workshops
+- Web development bootcamps
+- Corporate training materials
+
+#### **Software Products**
+- Desktop applications
+- Mobile app prototypes
+- Design tools and software
+- Content management systems
+
+### **Recommended Practices** 💡
+
+#### **Give Back to the Community**
+- Share improvements and extensions
+- Report bugs and issues
+- Create tutorials and guides
+- Contribute examples and use cases
+
+#### **Maintain Quality Standards**
+- Follow accessibility guidelines
+- Maintain responsive design principles
+- Keep code clean and documented
+- Test across different browsers and devices
+
+---
+
+## **Support & Community**
+
+### **Getting Help**
+- **GitHub Issues**: For bugs and technical problems
+- **GitHub Discussions**: For questions and community support
+- **Email**: thanattsitt.info@yahoo.co.uk for direct support
+- **Documentation**: Comprehensive wiki at https://github.com/Pigletpeakkung/thepegearts/wiki
+
+### **Community Guidelines**
+- **Be Respectful**: Treat all community members with respect
+- **Be Helpful**: Share knowledge and help others learn
+- **Be Constructive**: Provide useful feedback and suggestions
+- **Follow Standards**: Maintain code quality and documentation standards
+
+---
+
+## **Version History & Changes**
+
+### **License Version 1.2** - January 15, 2024
+- Added commercial use guidelines
+- Clarified third-party dependency licenses
+- Enhanced contribution terms
+- Added support and community sections
+
+### **License Version 1.1** - December 1, 2023
+- Added attribution examples
+- Clarified permitted uses
+- Enhanced third-party licenses section
+
+### **License Version 1.0** - November 1, 2023
+- Initial MIT license release
+- Basic terms and conditions
+- Copyright notice establishment
+
+---
+
+## **Contact Information**
+
+### **Project Maintainer**
+**Thanattsitt Santisamranwilai**
+- 📧 **Email**: thanattsitt.info@yahoo.co.uk
+- 🐙 **GitHub**: [@Pigletpeakkung](https://github.com/Pigletpeakkung)
+- 🌐 **Website**: https://thepegearts.vercel.app
+- 💼 **Portfolio**: https://thepegearts.dev
+
+### **Project Links**
+- **Repository**: https://github.com/Pigletpeakkung/thepegearts
+- **Documentation**: https://github.com/Pigletpeakkung/thepegearts/wiki
+- **Issues**: https://github.com/Pigletpeakkung/thepegearts/issues
+- **Discussions**: https://github.com/Pigletpeakkung/thepegearts/discussions
+
+### **Response Times**
+- **Email**: 24-48 hours for general inquiries
+- **GitHub Issues**: 48-72 hours for bug reports
+- **Pull Requests**: 3-7 days for code review
+- **Feature Requests**: 1-2 weeks for consideration
+
+---
+
+## **Legal Disclaimers**
+
+### **Trademark Notice**
+"ThePegeArts" is a trademark of Thanattsitt Santisamranwilai. The design system code is licensed under MIT, but the trademark remains protected.
+
+### **Warranty Disclaimer**
+This design system is provided "as is" without any warranty. While we strive for high quality and compatibility, we cannot guarantee that it will work in all environments or meet all requirements.
+
+### **Privacy**
+ThePegeArts itself does not collect any personal data. However, some optional integrations (analytics, fonts, etc.) may have their own privacy policies.
+
+### **Export Control**
+This software is not subject to export control regulations, but users are responsible for compliance with applicable laws in their jurisdiction.
+
+---
+
+## **Frequently Asked Questions**
+
+### **Can I use ThePegeArts in commercial projects?**
+Yes! ThePegeArts is licensed under MIT, which allows unlimited commercial use.
+
+### **Do I need to credit Thanattsitt Santisamranwilai?**
+Attribution is appreciated but not legally required under the MIT license.
+
+### **Can I modify the design system?**
+Absolutely! You can customize, extend, and modify ThePegeArts for your needs.
+
+### **Can I redistribute ThePegeArts?**
+Yes, you can include it in templates, themes, or other distributions while maintaining the license.
+
+### **What if I find a security issue?**
+Please report security issues to thanattsitt.info@yahoo.co.uk or through GitHub's security advisory system.
+
+### **Can I contribute improvements back?**
+Yes! Contributions are welcome through GitHub pull requests.
+
+---
+
+## **License Summary**
+
+**TL;DR**: ThePegeArts is free to use, modify, and distribute for any purpose, including commercial use. Attribution is appreciated but not required. The software comes without warranty.
+
+**Key Points**:
+- ✅ Free for personal and commercial use
+- ✅ Modify and customize as needed
+- ✅ Redistribute in your own projects
+- ✅ No licensing fees or restrictions
+- ⚠️ No warranty or guarantee provided
+- 💖 Attribution appreciated but optional
+
+---
+
+**This license was last updated on January 15, 2024**
+
+---
+
+## **Alternative License File Formats**
+
+### **Plain Text Version** (`LICENSE.txt`)
+```
+MIT License
+
+Copyright (c) 2024 Thanattsitt Santisamranwilai
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
+
+### **SPDX License Identifier**
+```
+SPDX-License-Identifier: MIT
+```
+
+### **Package.json License Field**
+```json
+{
+  "license": "MIT",
+  "author": {
+    "name": "Thanattsitt Santisamranwilai",
+    "email": "thanattsitt.info@yahoo.co.uk"
+  }
+}
+```
+
+---
+
+**Built with 💜 by [ThePegeArts](https://github.com/Pigletpeakkung/thepegearts) | Licensed under [MIT License](LICENSE)**
+
+*"Empowering developers to create beautiful, accessible web experiences with moonlit aesthetics."*
