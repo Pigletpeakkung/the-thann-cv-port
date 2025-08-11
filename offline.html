@@ -3,146 +3,195 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Offline - Pegearts Portfolio</title>
+    <title>You're Offline - Moonlit Portfolio</title>
     <style>
         :root {
-            --bs-primary: #A78BFA;
-            --bs-secondary: #F9A8D4;
-            --primary-gradient: linear-gradient(135deg, var(--bs-primary), var(--bs-secondary));
+            --primary-light: #A78BFA;
+            --primary-accent: #F9A8D4;
+            --background-light: #F8FAFC;
+            --text-dark: #2D3748;
+            --text-medium: #718096;
         }
-        
-        body {
-            font-family: 'Inter', sans-serif;
+
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, var(--background-light) 0%, rgba(167, 139, 250, 0.1) 100%);
+            color: var(--text-dark);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-            color: #2d3748;
+            padding: 2rem;
         }
-        
+
         .offline-container {
             text-align: center;
-            padding: 40px;
-            background: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.25);
             backdrop-filter: blur(20px);
-            border-radius: 20px;
-            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.1);
-            max-width: 500px;
-            margin: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 2rem;
+            padding: 3rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         }
-        
-        .offline-icon {
+
+        .moon-icon {
             font-size: 4rem;
-            background: var(--primary-gradient);
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 20px;
         }
-        
-        .offline-title {
-            font-size: 2rem;
+
+        h1 {
+            font-size: 2.5rem;
             font-weight: 800;
-            margin-bottom: 15px;
-            background: var(--primary-gradient);
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            margin-bottom: 1rem;
         }
-        
-        .offline-message {
-            font-size: 1.1rem;
-            color: #718096;
-            margin-bottom: 30px;
+
+        p {
+            color: var(--text-medium);
+            font-size: 1.125rem;
             line-height: 1.6;
+            margin-bottom: 2rem;
         }
-        
+
         .retry-button {
-            background: var(--primary-gradient);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-accent));
             color: white;
+            padding: 1rem 2rem;
             border: none;
-            padding: 15px 30px;
-            border-radius: 50px;
-            font-size: 1.1rem;
+            border-radius: 9999px;
+            font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
+            text-decoration: none;
         }
-        
+
         .retry-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 40px rgba(167, 139, 250, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
         }
-        
+
         .offline-features {
-            margin-top: 30px;
+            margin-top: 2rem;
             text-align: left;
-            background: rgba(167, 139, 250, 0.1);
-            padding: 20px;
-            border-radius: 15px;
         }
-        
+
         .offline-features h3 {
-            margin: 0 0 15px 0;
-            color: var(--bs-primary);
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
         }
-        
+
         .offline-features ul {
-            margin: 0;
-            padding-left: 20px;
+            list-style: none;
+            padding: 0;
         }
-        
+
         .offline-features li {
-            margin-bottom: 8px;
-            color: #4a5568;
+            color: var(--text-medium);
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .offline-features li::before {
+            content: "✨";
+            position: absolute;
+            left: 0;
+        }
+
+        @media (max-width: 768px) {
+            .offline-container {
+                padding: 2rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .moon-icon {
+                font-size: 3rem;
+            }
+        }
+
+        .pulse {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 0.8;
+            }
         }
     </style>
 </head>
 <body>
     <div class="offline-container">
-        <div class="offline-icon">📱</div>
-        <h1 class="offline-title">You're Offline</h1>
-        <p class="offline-message">
-            It looks like you're not connected to the internet. 
-            Don't worry, you can still browse the cached content!
+        <div class="moon-icon pulse">🌙</div>
+        <h1>You're Offline</h1>
+        <p>
+            It looks like you've lost your internet connection. Don't worry - 
+            some content is still available offline thanks to our PWA technology!
         </p>
         
         <button class="retry-button" onclick="window.location.reload()">
+            <span>🔄</span>
             Try Again
         </button>
-        
+
         <div class="offline-features">
-            <h3>What you can still do:</h3>
+            <h3>What's Available Offline:</h3>
             <ul>
-                <li>View previously loaded pages</li>
-                <li>Browse cached portfolio items</li>
-                <li>Read about services and skills</li>
-                <li>Access contact information</li>
+                <li>Basic portfolio information</li>
+                <li>Cached project images</li>
+                <li>Contact form (syncs when back online)</li>
+                <li>Resume download</li>
+                <li>Previously viewed content</li>
             </ul>
         </div>
     </div>
 
     <script>
-        // Check for internet connection
-        window.addEventListener('online', () => {
-            window.location.reload();
-        });
-        
-        // Update UI based on connection status
-        function updateConnectionStatus() {
+        // Check for network connectivity
+        function checkOnlineStatus() {
             if (navigator.onLine) {
-                document.querySelector('.retry-button').textContent = 'Back Online!';
-                setTimeout(() => {
-                    window.location.href = '/';
-                }, 1000);
+                window.location.reload();
             }
         }
-        
-        window.addEventListener('online', updateConnectionStatus);
-        window.addEventListener('offline', updateConnectionStatus);
+
+        // Listen for online events
+        window.addEventListener('online', checkOnlineStatus);
+
+        // Retry button functionality
+        document.querySelector('.retry-button').addEventListener('click', (e) => {
+            e.preventDefault();
+            checkOnlineStatus();
+        });
+
+        // Auto-retry when back online
+        setInterval(checkOnlineStatus, 5000);
     </script>
 </body>
 </html>
