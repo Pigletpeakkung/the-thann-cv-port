@@ -8,9 +8,15 @@
     <meta name="robots" content="noindex, nofollow">
     
     <!-- Preload Critical Resources -->
-    <link rel="preload" href="assets/fonts/inter-variable.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="src/styles/404.css" as="style">
-    <link rel="preload" href="assets/images/404/lost-astronaut.svg" as="image">
+    
+    <!-- Font preconnection for faster loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Inter Variable Font with async loading -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"></noscript>
     
     <!-- Stylesheets -->
     <link rel="stylesheet" href="src/styles/variables.css">
