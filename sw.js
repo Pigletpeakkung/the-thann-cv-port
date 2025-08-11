@@ -1,228 +1,443 @@
-// Service Worker for Pegearts Portfolio
-// Version 1.0.0
+/*
+========================================
+MOONLIT PORTFOLIO - SERVICE WORKER
+========================================
+*/
 
-const CACHE_NAME = 'pegearts-v1.0.0';
-const urlsToCache = [
+const CACHE_NAME = 'moonlit-portfolio-v1.2.0';
+const STATIC_CACHE = `${CACHE_NAME}-static`;
+const DYNAMIC_CACHE = `${CACHE_NAME}-dynamic`;
+const IMAGE_CACHE = `${CACHE_NAME}-images`;
+
+// Files to cache immediately
+const STATIC_ASSETS = [
   '/',
   '/index.html',
-  '/css/styles.css',
-  '/js/main.js',
-  '/favicon.ico',
-  '/apple-touch-icon.png',
-  '/favicon-32x32.png',
-  '/favicon-16x16.png',
-  '/images/og-image.jpg',
-  '/images/twitter-image.jpg',
-  '/images/profile-photo.jpg',
-  // External resources
-  'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css',
-  'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css',
-  'https://unpkg.com/aos@2.3.1/dist/aos.css',
-  'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css',
-  'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap',
-  'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js',
-  'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js',
-  'https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js',
-  'https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js',
-  'https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js',
-  'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js',
-  'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js',
-  'https://unpkg.com/aos@2.3.1/dist/aos.js'
+  '/manifest.json',
+  
+  // CSS Files
+  '/src/styles/main.css',
+  '/src/styles/variables.css',
+  '/src/styles/components/hero.css',
+  '/src/styles/components/navigation.css',
+  
+  // JavaScript Files
+  '/src/scripts/main.js',
+  '/src/scripts/app.js',
+  '/src/scripts/components/navigation.js',
+  '/src/scripts/components/hero.js',
+  '/src/scripts/utilities/dom.js',
+  
+  // Fonts
+  '/assets/fonts/inter-variable.woff2',
+  '/assets/fonts/inter-regular.woff2',
+  '/assets/fonts/inter-medium.woff2',
+  '/assets/fonts/inter-bold.woff2',
+  
+  // Essential Images
+  '/assets/images/icons/icon-192x192.png',
+  '/assets/images/icons/icon-512x512.png',
+  '/assets/images/hero/moon.svg',
+  
+  // Data Files
+  '/data/projects.json',
+  '/data/skills.json',
+  
+  // Fallback Pages
+  '/offline.html'
 ];
 
-// Install Service Worker
+// Images that can be cached dynamically
+const IMAGE_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.webp', '.svg', '.gif'];
+
+// API endpoints that should be cached
+const API_CACHE_PATTERNS = [
+  /\/data\//,
+  /\/api\//
+];
+
+/*
+========================================
+SERVICE WORKER EVENTS
+========================================
+*/
+
+// Install Event - Cache Static Assets
 self.addEventListener('install', (event) => {
-  console.log('Service Worker: Installing...');
+  console.log('🔧 Service Worker: Installing...');
+  
   event.waitUntil(
-    caches.open(CACHE_NAME)
+    caches.open(STATIC_CACHE)
       .then((cache) => {
-        console.log('Service Worker: Caching files');
-        return cache.addAll(urlsToCache);
+        console.log('📦 Service Worker: Caching static assets');
+        return cache.addAll(STATIC_ASSETS);
       })
       .then(() => {
-        console.log('Service Worker: Installation complete');
+        console.log('✅ Service Worker: Static assets cached successfully');
+        // Skip waiting to activate immediately
         return self.skipWaiting();
       })
       .catch((error) => {
-        console.error('Service Worker: Installation failed', error);
+        console.error('❌ Service Worker: Failed to cache static assets:', error);
       })
   );
 });
 
-// Activate Service Worker
+// Activate Event - Clean Up Old Caches
 self.addEventListener('activate', (event) => {
-  console.log('Service Worker: Activating...');
+  console.log('🚀 Service Worker: Activating...');
+  
   event.waitUntil(
-    caches.keys().then((cacheNames) => {
-      return Promise.all(
-        cacheNames.map((cacheName) => {
-          if (cacheName !== CACHE_NAME) {
-            console.log('Service Worker: Deleting old cache', cacheName);
-            return caches.delete(cacheName);
-          }
-        })
-      );
-    }).then(() => {
-      console.log('Service Worker: Activation complete');
-      return self.clients.claim();
-    })
+    caches.keys()
+      .then((cacheNames) => {
+        return Promise.all(
+          cacheNames
+            .filter((name) => {
+              // Remove old versions of our caches
+              return name.startsWith('moonlit-portfolio-') && 
+                     name !== STATIC_CACHE && 
+                     name !== DYNAMIC_CACHE && 
+                     name !== IMAGE_CACHE;
+            })
+            .map((name) => {
+              console.log(`🗑️ Service Worker: Deleting old cache: ${name}`);
+              return caches.delete(name);
+            })
+        );
+      })
+      .then(() => {
+        console.log('✅ Service Worker: Cache cleanup complete');
+        // Take control of all pages immediately
+        return self.clients.claim();
+      })
+      .catch((error) => {
+        console.error('❌ Service Worker: Cache cleanup failed:', error);
+      })
   );
 });
 
-// Fetch Event - Cache First Strategy
+// Fetch Event - Network Strategies
 self.addEventListener('fetch', (event) => {
-  // Skip cross-origin requests that we don't want to cache
-  if (!event.request.url.startsWith(self.location.origin) && 
-      !event.request.url.startsWith('https://cdn.') &&
-      !event.request.url.startsWith('https://cdnjs.') &&
-      !event.request.url.startsWith('https://unpkg.') &&
-      !event.request.url.startsWith('https://fonts.')) {
+  const { request } = event;
+  const url = new URL(request.url);
+  
+  // Skip non-GET requests and chrome-extension requests
+  if (request.method !== 'GET' || url.protocol === 'chrome-extension:') {
     return;
   }
-
-  event.respondWith(
-    caches.match(event.request)
-      .then((response) => {
-        if (response) {
-          console.log('Service Worker: Serving from cache', event.request.url);
-          return response;
-        }
-        
-        console.log('Service Worker: Fetching from network', event.request.url);
-        return fetch(event.request)
-          .then((response) => {
-            if (!response || response.status !== 200 || response.type !== 'basic') {
-              return response;
-            }
-
-            const responseToCache = response.clone();
-            
-            caches.open(CACHE_NAME)
-              .then((cache) => {
-                cache.put(event.request, responseToCache);
-              });
-
-            return response;
-          })
-          .catch((error) => {
-            console.error('Service Worker: Fetch failed', error);
-            if (event.request.destination === 'document') {
-              return caches.match('/offline.html');
-            }
-          });
-      })
-  );
-});
-
-// Background Sync
-self.addEventListener('sync', (event) => {
-  if (event.tag === 'contact-form-sync') {
-    event.waitUntil(syncContactForm());
+  
+  // Handle different types of requests with appropriate strategies
+  if (isStaticAsset(request)) {
+    event.respondWith(cacheFirstStrategy(request, STATIC_CACHE));
+  } else if (isImage(request)) {
+    event.respondWith(cacheFirstStrategy(request, IMAGE_CACHE));
+  } else if (isAPIRequest(request)) {
+    event.respondWith(networkFirstStrategy(request, DYNAMIC_CACHE));
+  } else if (isNavigationRequest(request)) {
+    event.respondWith(navigationStrategy(request));
+  } else {
+    event.respondWith(networkFirstStrategy(request, DYNAMIC_CACHE));
   }
 });
 
-// Push Notifications
-self.addEventListener('push', (event) => {
-  const options = {
-    body: event.data ? event.data.text() : 'New update available!',
-    icon: '/favicon-32x32.png',
-    badge: '/favicon-16x16.png',
-    vibrate: [100, 50, 100],
-    data: {
-      dateOfArrival: Date.now(),
-      primaryKey: 1
-    },
-    actions: [
-      {
-        action: 'explore',
-        title: 'View Portfolio',
-        icon: '/favicon-16x16.png'
-      },
-      {
-        action: 'close',
-        title: 'Close',
-        icon: '/favicon-16x16.png'
-      }
-    ]
-  };
-
-  event.waitUntil(
-    self.registration.showNotification('Pegearts Portfolio', options)
-  );
+// Background Sync for Contact Form
+self.addEventListener('sync', (event) => {
+  if (event.tag === 'contact-form-sync') {
+    console.log('🔄 Service Worker: Syncing contact form submissions');
+    event.waitUntil(syncContactFormSubmissions());
+  }
 });
 
-// Notification Click
-self.addEventListener('notificationclick', (event) => {
-  console.log('Notification click received.');
-  
-  event.notification.close();
-  
-  if (event.action === 'explore') {
+// Push Notifications (if implemented)
+self.addEventListener('push', (event) => {
+  if (event.data) {
+    const data = event.data.json();
+    const options = {
+      body: data.body,
+      icon: '/assets/images/icons/icon-192x192.png',
+      badge: '/assets/images/icons/icon-72x72.png',
+      tag: data.tag || 'default',
+      requireInteraction: true,
+      actions: data.actions || []
+    };
+    
     event.waitUntil(
-      clients.openWindow('https://pegearts.com')
+      self.registration.showNotification(data.title, options)
     );
   }
 });
 
-async function syncContactForm() {
+// Notification Click Handler
+self.addEventListener('notificationclick', (event) => {
+  event.notification.close();
+  
+  if (event.action === 'view') {
+    event.waitUntil(
+      clients.openWindow(event.notification.data.url || '/')
+    );
+  }
+});
+
+/*
+========================================
+CACHING STRATEGIES
+========================================
+*/
+
+// Cache First Strategy - For static assets
+async function cacheFirstStrategy(request, cacheName) {
   try {
-    const formData = await getStoredFormData();
-    if (formData) {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        body: JSON.stringify(formData),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
-      
-      if (response.ok) {
-        await clearStoredFormData();
-        console.log('Service Worker: Form synced successfully');
-      }
+    const cachedResponse = await caches.match(request);
+    
+    if (cachedResponse) {
+      // Update cache in background
+      updateCacheInBackground(request, cacheName);
+      return cachedResponse;
     }
+    
+    // Not in cache, fetch from network
+    const networkResponse = await fetch(request);
+    
+    if (networkResponse && networkResponse.status === 200) {
+      const cache = await caches.open(cacheName);
+      cache.put(request, networkResponse.clone());
+    }
+    
+    return networkResponse;
   } catch (error) {
-    console.error('Service Worker: Form sync failed', error);
+    console.error('Cache First Strategy failed:', error);
+    
+    // Try to return cached version as fallback
+    const cachedResponse = await caches.match(request);
+    if (cachedResponse) {
+      return cachedResponse;
+    }
+    
+    // Return offline fallback if available
+    if (isNavigationRequest(request)) {
+      return caches.match('/offline.html');
+    }
+    
+    throw error;
   }
 }
 
-async function getStoredFormData() {
+// Network First Strategy - For dynamic content
+async function networkFirstStrategy(request, cacheName) {
+  try {
+    const networkResponse = await fetch(request);
+    
+    if (networkResponse && networkResponse.status === 200) {
+      const cache = await caches.open(cacheName);
+      cache.put(request, networkResponse.clone());
+    }
+    
+    return networkResponse;
+  } catch (error) {
+    console.log('Network failed, trying cache:', request.url);
+    
+    const cachedResponse = await caches.match(request);
+    if (cachedResponse) {
+      return cachedResponse;
+    }
+    
+    // Return offline fallback for navigation requests
+    if (isNavigationRequest(request)) {
+      return caches.match('/offline.html');
+    }
+    
+    throw error;
+  }
+}
+
+// Navigation Strategy - For HTML pages
+async function navigationStrategy(request) {
+  try {
+    // Try network first for navigation requests
+    const networkResponse = await fetch(request);
+    
+    if (networkResponse && networkResponse.status === 200) {
+      const cache = await caches.open(DYNAMIC_CACHE);
+      cache.put(request, networkResponse.clone());
+    }
+    
+    return networkResponse;
+  } catch (error) {
+    // Try cached version
+    const cachedResponse = await caches.match(request);
+    if (cachedResponse) {
+      return cachedResponse;
+    }
+    
+    // Return offline fallback
+    return caches.match('/offline.html');
+  }
+}
+
+// Update cache in background without blocking response
+async function updateCacheInBackground(request, cacheName) {
+  try {
+    const networkResponse = await fetch(request);
+    
+    if (networkResponse && networkResponse.status === 200) {
+      const cache = await caches.open(cacheName);
+      cache.put(request, networkResponse.clone());
+      console.log('🔄 Background cache update:', request.url);
+    }
+  } catch (error) {
+    console.log('Background update failed:', error);
+  }
+}
+
+/*
+========================================
+HELPER FUNCTIONS
+========================================
+*/
+
+// Check if request is for a static asset
+function isStaticAsset(request) {
+  const url = new URL(request.url);
+  return STATIC_ASSETS.includes(url.pathname) || 
+         url.pathname.startsWith('/src/') ||
+         url.pathname.startsWith('/assets/fonts/');
+}
+
+// Check if request is for an image
+function isImage(request) {
+  const url = new URL(request.url);
+  return IMAGE_EXTENSIONS.some(ext => url.pathname.toLowerCase().includes(ext));
+}
+
+// Check if request is for API data
+function isAPIRequest(request) {
+  const url = new URL(request.url);
+  return API_CACHE_PATTERNS.some(pattern => pattern.test(url.pathname));
+}
+
+// Check if request is a navigation request
+function isNavigationRequest(request) {
+  return request.mode === 'navigate' || 
+         (request.method === 'GET' && request.headers.get('accept').includes('text/html'));
+}
+
+/*
+========================================
+BACKGROUND SYNC FUNCTIONS
+========================================
+*/
+
+// Sync contact form submissions when back online
+async function syncContactFormSubmissions() {
+  try {
+    const db = await openDB();
+    const submissions = await getAllPendingSubmissions(db);
+    
+    for (const submission of submissions) {
+      try {
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(submission.data)
+        });
+        
+        if (response.ok) {
+          await deletePendingSubmission(db, submission.id);
+          console.log('✅ Contact form submission synced');
+        }
+      } catch (error) {
+        console.error('Failed to sync submission:', error);
+      }
+    }
+  } catch (error) {
+    console.error('Background sync failed:', error);
+  }
+}
+
+// IndexedDB helpers for background sync
+function openDB() {
   return new Promise((resolve, reject) => {
-    const request = indexedDB.open('PegeartsDB', 1);
+    const request = indexedDB.open('moonlit-portfolio', 1);
     
     request.onerror = () => reject(request.error);
-    
-    request.onsuccess = () => {
-      const db = request.result;
-      const transaction = db.transaction(['formData'], 'readonly');
-      const store = transaction.objectStore('formData');
-      const getRequest = store.get('pendingForm');
-      
-      getRequest.onsuccess = () => resolve(getRequest.result);
-      getRequest.onerror = () => reject(getRequest.error);
-    };
+    request.onsuccess = () => resolve(request.result);
     
     request.onupgradeneeded = (event) => {
       const db = event.target.result;
-      if (!db.objectStoreNames.contains('formData')) {
-        db.createObjectStore('formData');
+      if (!db.objectStoreNames.contains('contact-submissions')) {
+        db.createObjectStore('contact-submissions', { 
+          keyPath: 'id', 
+          autoIncrement: true 
+        });
       }
     };
   });
 }
 
-async function clearStoredFormData() {
+async function getAllPendingSubmissions(db) {
   return new Promise((resolve, reject) => {
-    const request = indexedDB.open('PegeartsDB', 1);
+    const transaction = db.transaction(['contact-submissions'], 'readonly');
+    const store = transaction.objectStore('contact-submissions');
+    const request = store.getAll();
     
-    request.onsuccess = () => {
-      const db = request.result;
-      const transaction = db.transaction(['formData'], 'readwrite');
-      const store = transaction.objectStore('formData');
-      const deleteRequest = store.delete('pendingForm');
-      
-      deleteRequest.onsuccess = () => resolve();
-      deleteRequest.onerror = () => reject(deleteRequest.error);
-    };
+    request.onerror = () => reject(request.error);
+    request.onsuccess = () => resolve(request.result);
   });
 }
+
+async function deletePendingSubmission(db, id) {
+  return new Promise((resolve, reject) => {
+    const transaction = db.transaction(['contact-submissions'], 'readwrite');
+    const store = transaction.objectStore('contact-submissions');
+    const request = store.delete(id);
+    
+    request.onerror = () => reject(request.error);
+    request.onsuccess = () => resolve();
+  });
+}
+
+/*
+========================================
+PERIODIC BACKGROUND SYNC
+========================================
+*/
+
+// Clean up old caches periodically
+self.addEventListener('periodicsync', (event) => {
+  if (event.tag === 'cache-cleanup') {
+    event.waitUntil(performCacheCleanup());
+  }
+});
+
+async function performCacheCleanup() {
+  try {
+    const cacheNames = await caches.keys();
+    const now = Date.now();
+    const maxAge = 7 * 24 * 60 * 60 * 1000; // 7 days
+    
+    for (const cacheName of cacheNames) {
+      const cache = await caches.open(cacheName);
+      const requests = await cache.keys();
+      
+      for (const request of requests) {
+        const response = await cache.match(request);
+        if (response) {
+          const dateHeader = response.headers.get('date');
+          if (dateHeader) {
+            const responseDate = new Date(dateHeader).getTime();
+            if (now - responseDate > maxAge) {
+              await cache.delete(request);
+              console.log(`🗑️ Cleaned up old cache entry: ${request.url}`);
+            }
+          }
+        }
+      }
+    }
+  } catch (error) {
+    console.error('Cache cleanup failed:', error);
+  }
+}
+
+console.log('🌙 Moonlit Portfolio Service Worker loaded successfully');
