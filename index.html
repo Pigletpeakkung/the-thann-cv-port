@@ -105,57 +105,505 @@ if ('serviceWorker' in navigator) {
             .then((registration) => {
                 console.log('✅ SW registered: ', registration);
                 
-                // Check for updates
-                registration.addEventListener('updatefound', () => {
-                    const newWorker = registration.installing;
-                    newWorker.addEventListener('statechange', () => {
-                        if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                            // New content available, show update notification
-                            showUpdateNotification();
-                        }
-                    });
+  <!-- Performance Optimizations -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://unpkg.com">
+
+    <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="//unpkg.com">
+
+    <!-- Critical CSS Preload -->
+    <link rel="preload" href="src/styles/styles.css" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" as="style">
+
+    <!-- CSS Libraries with SRI -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
+          rel="stylesheet" 
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
+          crossorigin="anonymous">
+    
+    <link rel="stylesheet" 
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" 
+          integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsbIC8yHVdHBoaMN1K1ZzB4/O0QD3JF5XKAnC4Jg==" 
+          crossorigin="anonymous" 
+          referrerpolicy="no-referrer">
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" 
+          rel="stylesheet" 
+          integrity="sha384-fYq1u0D1A0qSW3Bl+5wXu3rWfWx9KvhCM5OHsAcCl2Po9WMQ0s0epwAcKTn1BLFepzg7itesVVC2YuKn0E/49dCQ==" 
+          crossorigin="anonymous" 
+          referrerpolicy="no-referrer">
+    
+    <link rel="stylesheet" 
+          href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" 
+          integrity="sha384-bBSpvEwTOmE3b48/pnt3euR/ObUSyYaWJfOdZGU8m0N+2FnF0t9I2phb3kq+lsqDqbrIOUsumE5PQx4paAEB1w4w==" 
+          crossorigin="anonymous" 
+          referrerpolicy="no-referrer">
+
+    <!-- Google Fonts with optimal loading -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" 
+          rel="stylesheet">
+
+    <!-- Favicons & PWA -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+
+    <!-- PWA Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Pegearts Portfolio">
+    <meta name="theme-color" content="#A78BFA">
+    <meta name="msapplication-TileColor" content="#A78BFA">
+    <meta name="msapplication-config" content="/browserconfig.xml">
+
+    <!-- SEO Meta Tags -->
+    <title>Pegearts - AI Voice Solutions & Creative Technology</title>
+    <meta name="description" content="Multilingual AI content developer and voice specialist with 7+ years experience. Offering professional AI voice solutions, prompt engineering, and creative technology services.">
+    <meta name="keywords" content="AI voice, prompt engineering, multilingual content, voice acting, creative technology, AI automation, GPT scripting">
+    <meta name="author" content="Thanatsitt Santisamranwilai">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Pegearts - AI Voice Solutions & Creative Technology">
+    <meta property="og:description" content="Professional AI voice solutions and creative technology services by Thanatsitt Santisamranwilai. 7+ years experience in multilingual content and AI automation.">
+    <meta property="og:image" content="https://pegearts.com/assets/images/og-image.jpg">
+    <meta property="og:url" content="https://pegearts.com">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Pegearts">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Pegearts - AI Voice Solutions & Creative Technology">
+    <meta name="twitter:description" content="Professional AI voice solutions and creative technology services. Multilingual content development and AI automation expertise.">
+    <meta name="twitter:image" content="https://pegearts.com/assets/images/twitter-card.jpg">
+    <meta name="twitter:creator" content="@pegearts">
+
+    <!-- Canonical & Internationalization -->
+    <link rel="canonical" href="https://pegearts.com">
+    <link rel="alternate" hreflang="en" href="https://pegearts.com">
+    <link rel="alternate" hreflang="th" href="https://pegearts.com/th">
+    <link rel="alternate" hreflang="ja" href="https://pegearts.com/ja">
+    <link rel="alternate" hreflang="x-default" href="https://pegearts.com">
+
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self'; 
+        script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://unpkg.com https://www.googletagmanager.com https://www.google-analytics.com; 
+        style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://unpkg.com https://fonts.googleapis.com; 
+        font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com data:; 
+        img-src 'self' data: https: blob:; 
+        connect-src 'self' https://pegearts.com https://www.google-analytics.com; 
+        media-src 'self' https: data: blob:;
+        frame-src 'self' https://www.youtube.com https://player.vimeo.com; 
+        object-src 'none'; 
+        base-uri 'self'; 
+        form-action 'self'; 
+        upgrade-insecure-requests;
+    ">
+    
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+
+    <!-- Performance & Resource Hints -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+
+    <!-- Critical Inline CSS -->
+    <style>
+        :root {
+            --primary-light: #A78BFA;
+            --primary-dark: #7C3AED;
+            --primary-accent: #F9A8D4;
+            --secondary-highlight: #6EE7B7;
+            --background-light: #F8FAFC;
+            --background-dark: #1A202C;
+            --text-dark: #2D3748;
+            --text-medium: #718096;
+            --text-light: #A0AEC0;
+            --glass-bg: rgba(255, 255, 255, 0.25);
+            --glass-border: rgba(255, 255, 255, 0.18);
+            --gradient-primary: linear-gradient(135deg, var(--primary-light), var(--primary-accent));
+            --transition-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow-lg: 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+            body {
+                font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+                background: var(--background-light);
+                color: var(--text-dark);
+                line-height: 1.6;
+                font-weight: 400;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                transition: background-color 0.3s ease, color 0.3s ease;
+            }
+
+            .preloader {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: var(--background-light);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 9999;
+                transition: opacity 0.5s ease;
+            }
+
+            .preloader-spinner {
+                width: 60px;
+                height: 60px;
+                border: 4px solid rgba(167, 139, 250, 0.3);
+                border-top: 4px solid var(--primary-light);
+                border-radius: 50%;
+                animation: spin 1s linear infinite;
+            }
+
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 20px;
+            }
+
+            .header {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                z-index: 1000;
+                transition: all var(--transition-smooth);
+                backdrop-filter: blur(15px);
+                -webkit-backdrop-filter: blur(15px);
+            }
+
+            .header.scrolled {
+                background: rgba(255, 255, 255, 0.95);
+                box-shadow: var(--shadow-lg);
+            }
+
+            .hero-section {
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                position: relative;
+                overflow: hidden;
+                background: linear-gradient(135deg, var(--background-light) 0%, rgba(167, 139, 250, 0.1) 100%);
+            }
+
+            .btn {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                padding: 12px 24px;
+                background: var(--gradient-primary);
+                color: white;
+                text-decoration: none;
+                border-radius: 50px;
+                font-weight: 600;
+                transition: all var(--transition-smooth);
+                border: none;
+                cursor: pointer;
+                font-size: 16px;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .btn:hover {
+                transform: translateY(-2px);
+                box-shadow: var(--shadow-lg);
+            }
+
+            /* Hide non-critical content during initial load */
+            .fade-in-up {
+                opacity: 0;
+                transform: translateY(30px);
+                transition: all 0.6s ease;
+            }
+
+            .fade-in-up.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            /* Loading skeleton for images */
+            .image-skeleton {
+                background: linear-gradient(90deg, 
+                    rgba(167, 139, 250, 0.1) 25%, 
+                    rgba(167, 139, 250, 0.2) 50%, 
+                    rgba(167, 139, 250, 0.1) 75%);
+                background-size: 200% 100%;
+                animation: shimmer 1.5s infinite;
+                border-radius: 8px;
+            }
+
+            @keyframes shimmer {
+                0% { background-position: -200% 0; }
+                100% { background-position: 200% 0; }
+            }
+        </style>
+
+        <!-- Service Worker Registration -->
+        <script>
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('/sw.js', { scope: '/' })
+                        .then((registration) => {
+                            console.log('✅ SW registered:', registration);
+                            
+                            // Handle updates
+                            registration.addEventListener('updatefound', () => {
+                                const newWorker = registration.installing;
+                                if (newWorker) {
+                                    newWorker.addEventListener('statechange', () => {
+                                        if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                            showUpdateBanner();
+                                        }
+                                    });
+                                }
+                            });
+
+                            // Check for updates every 30 minutes
+                            setInterval(() => {
+                                registration.update();
+                            }, 30 * 60 * 1000);
+                        })
+                        .catch((error) => {
+                            console.log('❌ SW registration failed:', error);
+                        });
                 });
-            })
-            .catch((registrationError) => {
-                console.log('❌ SW registration failed: ', registrationError);
-            });
-    });
-}
+            }
 
-function showUpdateNotification() {
-    if (confirm('New content is available! Click OK to refresh.')) {
-        window.location.reload();
-    }
-}
-</script>
+            function showUpdateBanner() {
+                const banner = document.createElement('div');
+                banner.innerHTML = `
+                    <div style="
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        background: var(--primary-light);
+                        color: white;
+                        padding: 12px;
+                        text-align: center;
+                        z-index: 10001;
+                        font-family: 'Inter', sans-serif;
+                        font-weight: 600;
+                    ">
+                        🎉 New content available! 
+                        <button onclick="window.location.reload()" style="
+                            background: rgba(255,255,255,0.2);
+                            border: 1px solid rgba(255,255,255,0.3);
+                            color: white;
+                            padding: 6px 12px;
+                            border-radius: 20px;
+                            margin-left: 10px;
+                            cursor: pointer;
+                            font-weight: 600;
+                        ">Refresh</button>
+                        <button onclick="this.parentElement.parentElement.remove()" style="
+                            background: transparent;
+                            border: none;
+                            color: white;
+                            margin-left: 10px;
+                            cursor: pointer;
+                            font-size: 18px;
+                        ">×</button>
+                    </div>
+                `;
+                document.body.prepend(banner);
+            }
+        </script>
 
+        <!-- Enhanced Schema.org JSON-LD -->
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Thanatsitt Santisamranwilai",
+            "alternateName": ["Thanatsitt", "Pegearts", "Ezekielarts", "Zeintharts"],
+            "description": "Professional AI voice specialist and multilingual content developer with 7+ years of experience in creative technology, prompt engineering, and voice acting.",
+            "url": "https://pegearts.com",
+            "email": "mailto:thanatsitt.info@yahoo.co.uk",
+            "telephone": "+66-XX-XXX-XXXX",
+            "image": {
+                "@type": "ImageObject",
+                "url": "https://pegearts.com/assets/images/profile-photo.jpg",
+                "width": "500",
+                "height": "500"
+            },
+            "nationality": {
+                "@type": "Country",
+                "name": "Thailand"
+            },
+            "birthPlace": {
+                "@type": "Place",
+                "name": "Thailand",
+                "addressCountry": "TH"
+            },
+            "homeLocation": {
+                "@type": "Place",
+                "name": "Kamphaeng Phet, Thailand",
+                "addressCountry": "TH"
+            },
+            "jobTitle": [
+                "AI Voice Specialist",
+                "Prompt Engineer", 
+                "Creative Technologist",
+                "Multilingual Voice Actor",
+                "Content Developer"
+            ],
+            "knowsLanguage": [
+                {
+                    "@type": "Language",
+                    "name": "Thai",
+                    "fluency": "Native"
+                },
+                {
+                    "@type": "Language", 
+                    "name": "English",
+                    "fluency": "Professional"
+                },
+                {
+                    "@type": "Language",
+                    "name": "Japanese", 
+                    "fluency": "Conversational"
+                }
+            ],
+            "hasOccupation": {
+                "@type": "Occupation",
+                "name": "AI Content Developer & Voice Specialist",
+                "occupationLocation": {
+                    "@type": "Country",
+                    "name": "Thailand"
+                },
+                "skills": [
+                    "AI Voice Synthesis",
+                    "Prompt Engineering", 
+                    "Voice Acting",
+                    "SEO Strategy",
+                    "Creative Writing",
+                    "Multilingual Content",
+                    "GPT Scriptwriting",
+                    "React Development",
+                    "E-commerce Content",
+                    "Podcast Production",
+                    "Video Content Creation",
+                    "AI Automation"
+                ],
+                "experienceRequirements": "7+ years",
+                "qualifications": "Bachelor's Degree in Fashion & Design Communication"
+            },
+            "alumniOf": [
+                {
+                    "@type": "EducationalOrganization",
+                    "name": "London College of Fashion, University of the Arts London",
+                    "location": "London, UK"
+                },
+                {
+                    "@type": "EducationalOrganization", 
+                    "name": "Bunka Fashion College",
+                    "location": "Tokyo, Japan"
+                },
+                {
+                    "@type": "EducationalOrganization",
+                    "name": "Bangkok University", 
+                    "location": "Bangkok, Thailand"
+                }
+            ],
+            "hasCredential": [
+                {
+                    "@type": "EducationalOccupationalCredential",
+                    "name": "BA (Hons) Fashion & Design Communication",
+                    "recognizedBy": {
+                        "@type": "EducationalOrganization",
+                        "name": "London College of Fashion"
+                    }
+                },
+                {
+                    "@type": "EducationalOccupationalCredential", 
+                    "name": "Shopify Partner Academy Certification",
+                    "recognizedBy": {
+                        "@type": "Organization",
+                        "name": "Shopify"
+                    }
+                },
+                {
+                    "@type": "EducationalOccupationalCredential",
+                    "name": "Google Digital Marketing Certificate", 
+                    "recognizedBy": {
+                        "@type": "Organization",
+                        "name": "Google"
+                    }
+                }
+            ],
+            "sameAs": [
+                "https://github.com/thanattsitt",
+                "https://linkedin.com/in/thanatsitt", 
+                "https://voice123.com/thanattsitt",
+                "https://open.spotify.com/show/thanattsitt",
+                "https://www.buzzsprout.com/thanattsitt",
+                "https://youtube.com/@pegearts",
+                "https://medium.com/@zeintharts", 
+                "https://www.wattpad.com/user/Ezekielarts",
+                "https://linktr.ee/thanatsitt",
+                "https://twitter.com/pegearts"
+            ],
+            "worksFor": {
+                "@type": "Organization",
+                "name": "Pegearts",
+                "url": "https://pegearts.com",
+                "@type": "ProfessionalService",
+                "serviceType": "AI Voice & Creative Technology Services"
+            },
+            "offers": {
+                "@type": "Offer",
+                "itemOffered": [
+                    {
+                        "@type": "Service",
+                        "name": "AI Voice Development",
+                        "description": "Custom AI voice synthesis and voice acting services"
+                    },
+                    {
+                        "@type": "Service", 
+                        "name": "Prompt Engineering",
+                        "description": "Advanced AI prompt development and optimization"
+                    },
+                    {
+                        "@type": "Service",
+                        "name": "Multilingual Content Creation", 
+                        "description": "Professional content development in Thai, English, and Japanese"
+                    }
+                ]
+            }
+        }
+        </script>
 
-    <!-- Schema.org JSON-LD (fixed email) -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Thanatsitt Santisamranwilai",
-      "alternateName": ["Thanatsitt", "Pegearts", "Ezekielarts", "Zeintharts"],
-      "description": "Multilingual content developer and AI specialist with 7+ years of experience combining creative writing, voice acting, SEO strategy, and automation",
-      "url": "https://pegearts.com",
-      "email": "mailto:thanatsitt.info@yahoo.co.uk",
-      "image": "https://pegearts.com/images/profile-photo.jpg",
-      "nationality": "Thai",
-      "birthPlace": { "@type": "Place", "name": "Thailand", "addressCountry": "TH" },
-      "homeLocation": { "@type": "Place", "name": "Kamphaeng Phet, Thailand", "addressCountry": "TH" },
-      "jobTitle": ["AI Content Developer", "Prompt Engineer", "Creative Technologist", "Voiceover Artist", "Multilingual Content Creator"],
-      "knowsLanguage": [{ "@type": "Language", "name": "Thai", "fluency": "Native" }, { "@type": "Language", "name": "English", "fluency": "Fluent" }, { "@type": "Language", "name": "Japanese", "fluency": "Conversational" }],
-      "hasOccupation": { "@type": "Occupation", "name": "AI Content Developer & Creative Technologist", "occupationLocation": { "@type": "Country", "name": "Thailand" }, "skills": ["AI Content Development", "Prompt Engineering", "Voice Acting", "SEO Strategy", "Creative Writing", "Multilingual Content", "GPT Scriptwriting", "React Development", "E-commerce Content", "Podcast Production", "Video Content Creation"], "experienceRequirements": "7+ years" },
-      "alumniOf": [{ "@type": "EducationalOrganization", "name": "London College of Fashion, University of the Arts London", "location": "London, UK" }, { "@type": "EducationalOrganization", "name": "Bunka Fashion College", "location": "Tokyo, Japan" }, { "@type": "EducationalOrganization", "name": "Bangkok University", "location": "Bangkok, Thailand" }],
-      "hasCredential": [{ "@type": "EducationalOccupationalCredential", "name": "BA (Hons) Fashion & Design Communication", "recognizedBy": { "@type": "EducationalOrganization", "name": "London College of Fashion" } }, { "@type": "EducationalOccupationalCredential", "name": "Shopify Partner Academy Certification", "recognizedBy": { "@type": "Organization", "name": "Shopify" } }, { "@type": "EducationalOccupationalCredential", "name": "Google Digital Garage - SEO & Marketing", "recognizedBy": { "@type": "Organization", "name": "Google" } }],
-      "sameAs": ["https://github.com/thanattsitt", "https://linkedin.com/in/thanatsitt", "https://voice123.com/thanattsitt", "https://open.spotify.com/show/thanattsitt", "https://www.buzzsprout.com/thanattsitt", "https://youtube.com/@pegearts", "https://medium.com/@zeintharts", "https://www.wattpad.com/user/Ezekielarts", "https://linktr.ee/thanatsitt"],
-      "worksFor": { "@type": "Organization", "name": "Pegearts", "url": "https://pegearts.com" }
-    }
-    </script>
-
-    <!-- External CSS -->
-    <link rel="stylesheet" href="src/styles/styles.css">
+        <!-- Main Stylesheet -->
+        <link rel="stylesheet" href="src/styles/styles.css">
 </head>
 <body>
     <!-- Skip to main content link for accessibility -->
