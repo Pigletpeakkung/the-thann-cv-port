@@ -1,46 +1,54 @@
-# Dependencies
+# Node.js dependencies
 node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+package-lock.json
+npm-debug.log
+yarn.lock
 
-# Production builds
+# Vercel build output
+.vercel/
+.vercel/output/
+.next/
+
+# Build output and temporary files
 dist/
 build/
-*.min.js
-*.min.css
-
-# Reports
-reports/
-lighthouse-report.html
-
-# OS generated files
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-
-# Editor directories and files
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
+out/
 
 # Environment variables
 .env
 .env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.env.development
+.env.production
 
-# Cache
-.cache/
-.tmp/
+# Editor and IDE files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
 
-# Logs
-logs/
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Cache and temporary files
 *.log
+*.cache
+tmp/
+
+# Asset and media folders (if they contain large or generated files)
+assets/images/*
+!assets/images/*.svg
+!assets/images/*.png
+!assets/images/*.jpg
+!assets/images/*.jpeg
+!assets/images/*.gif
+!assets/images/*.webp
+
+# Sensitive or local configuration files
+secrets.json
+config.json
+
+# Miscellaneous
+*.bak
+*.swp
+*.swo
